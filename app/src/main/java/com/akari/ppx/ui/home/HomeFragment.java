@@ -53,26 +53,26 @@ public class HomeFragment extends PreferenceFragmentCompat implements Preference
 	public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
 		addPreferencesFromResource(R.xml.settings);
 		NeutralButton.OnClickListener listener = text -> Utils.showToast(getActivity(), Utils.checkTextValid(text));
-		setSummaryPlusButton(Prefs.REMOVE_COMMENT_KEYWORDS, listener, true);
-		setSummaryPlusButton(Prefs.REMOVE_COMMENT_USERS, listener, true);
+		setSummaryWithButton(Prefs.REMOVE_COMMENT_KEYWORDS, listener, true);
+		setSummaryWithButton(Prefs.REMOVE_COMMENT_USERS, listener, true);
 		findPreference(Prefs.DIY_CATEGORY_LIST).setOnPreferenceChangeListener(this);
 		findPreference(Prefs.REMOVE_BOTTOM_VIEW).setOnPreferenceChangeListener(this);
 		findPreference(Prefs.DONATE).setOnPreferenceClickListener(this);
 		findPreference(Prefs.HIDE_LAUNCHER_ICON).setOnPreferenceChangeListener(this);
 		findPreference(Prefs.SOURCE_CODE).setOnPreferenceClickListener(this);
 		listener = text -> Utils.showToast(getActivity(), Utils.ts2date(System.currentTimeMillis(), text, true));
-		setSummaryPlusButton(Prefs.TODAY_COMMENT_TIME_FORMAT, listener, false);
-		setSummaryPlusButton(Prefs.EXACT_COMMENT_TIME_FORMAT, listener, false);
+		setSummaryWithButton(Prefs.TODAY_COMMENT_TIME_FORMAT, listener, false);
+		setSummaryWithButton(Prefs.EXACT_COMMENT_TIME_FORMAT, listener, false);
 		setSummary(Prefs.AUTO_BROWSE_FREQUENCY);
 		setSummary(Prefs.AUTO_COMMENT_TEXT);
 		setSummary(Prefs.USER_NAME);
 		setSummary(Prefs.CERTIFY_DESC);
 		setSummary(Prefs.DESCRIPTION);
 		listener = text -> Utils.showToast(getActivity(), Utils.checkLongValid(text));
-		setSummaryPlusButton(Prefs.LIKE_COUNT, listener, false);
-		setSummaryPlusButton(Prefs.FOLLOWERS_COUNT, listener, false);
-		setSummaryPlusButton(Prefs.FOLLOWING_COUNT, listener, false);
-		setSummaryPlusButton(Prefs.POINT, listener, false);
+		setSummaryWithButton(Prefs.LIKE_COUNT, listener, false);
+		setSummaryWithButton(Prefs.FOLLOWERS_COUNT, listener, false);
+		setSummaryWithButton(Prefs.FOLLOWING_COUNT, listener, false);
+		setSummaryWithButton(Prefs.POINT, listener, false);
 	}
 
 	@Override
@@ -139,7 +139,7 @@ public class HomeFragment extends PreferenceFragmentCompat implements Preference
 		pref.setSummary(pref instanceof NeutralEditPreference && ((NeutralEditPreference) pref).isArray() ? Utils.checkTextValid(text) : "".equals(text) ? "" : Const.NOW.concat(text));
 	}
 
-	private void setSummaryPlusButton(Prefs prefs, NeutralButton.OnClickListener onClickListener, boolean isArray) {
+	private void setSummaryWithButton(Prefs prefs, NeutralButton.OnClickListener onClickListener, boolean isArray) {
 		EditPreference pref = (EditPreference) findPreference(prefs);
 		if (pref instanceof NeutralEditPreference) {
 			((NeutralEditPreference) pref).setIsArray(isArray);

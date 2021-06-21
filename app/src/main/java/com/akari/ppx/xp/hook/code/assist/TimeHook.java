@@ -32,23 +32,26 @@ public class TimeHook extends SuperbHook {
 					achievements = new ArrayList();
 				long createTime = getLongField(param.thisObject, "createTime");
 				if (createTime != 0) {
-					achievements.add(createAchievement("注册:", Utils.ts2date(createTime, "yyyy-MM-dd HH:mm:ss", false)));
+					tryAddAchievement(achievements, "注册:", Utils.ts2date(createTime, "yyyy-MM-dd HH:mm:ss", false));
 					try {
 						long expireTime = getLongField(getObjectField(((ArrayList) callMethod(param.thisObject, "getPunishmentList")).get(0), "status"), "expireTime");
 						if (expireTime != -1)
-							achievements.add(createAchievement("出黑屋:", Utils.ts2date(expireTime, "yyyy-MM-dd HH:mm:ss", false)));
+							tryAddAchievement(achievements, "出黑屋:", Utils.ts2date(expireTime, "yyyy-MM-dd HH:mm:ss", false));
 					} catch (Exception ignored) {
 					}
 				}
 				param.setResult(achievements);
 			}
 
-			private Object createAchievement(String description, String time) {
+			private void tryAddAchievement(ArrayList achievements, String description, String time) {
+				for (Object achievement : achievements)
+					if (((String) callMethod(achievement, "getDescription")).contains(description))
+						return;
 				Object achievementInfo = newInstance(findClass("com.sup.android.mi.usercenter.model.UserInfo$AchievementInfo", cl));
 				callMethod(achievementInfo, "setDescription", description + time);
 				callMethod(achievementInfo, "setIcon", "https://p1-ppx.bytecdn.cn/tos-cn-i-ppx/6d603a87e14741bcbbc941af3a2a623a~tplv-ppx-q75.image");
 				callMethod(achievementInfo, "setSchema", "akari://" + time.replace(':', '='));
-				return achievementInfo;
+				achievements.add(achievementInfo);
 			}
 		});
 		hookMethod("com.bytedance.router.b", "a", Context.class, "com.bytedance.router.RouteIntent", new XC_MethodReplacement() {

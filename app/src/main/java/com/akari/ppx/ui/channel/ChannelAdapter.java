@@ -226,19 +226,19 @@ public class ChannelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 	public void onBindViewHolder(@NotNull RecyclerView.ViewHolder holder, int position) {
 		if (holder instanceof MyViewHolder) {
 			MyViewHolder myHolder = (MyViewHolder) holder;
-			setBoldText(myHolder.textView, myChannelItems.get(position - COUNT_PRE_MY_HEADER));
+			setTextWithColor(myHolder.textView, myChannelItems.get(position - COUNT_PRE_MY_HEADER));
 			myHolder.imgEdit.setVisibility(isEditMode ? View.VISIBLE : View.INVISIBLE);
 		} else if (holder instanceof OtherViewHolder) {
-			setBoldText(((OtherViewHolder) holder).textView, otherChannelItems.get(position - myChannelItems.size() - COUNT_PRE_OTHER_HEADER));
+			setTextWithColor(((OtherViewHolder) holder).textView, otherChannelItems.get(position - myChannelItems.size() - COUNT_PRE_OTHER_HEADER));
 		} else if (holder instanceof MyChannelHeaderViewHolder) {
 			MyChannelHeaderViewHolder headerHolder = (MyChannelHeaderViewHolder) holder;
 			headerHolder.tvBtnEdit.setText(isEditMode ? R.string.finish : R.string.edit);
 		}
 	}
 
-	private void setBoldText(TextView textView, ChannelEntity entity) {
+	private void setTextWithColor(TextView textView, ChannelEntity entity) {
 		textView.setText(entity.getName());
-		if(entity.isParentChannel()){
+		if (entity.isParentChannel()) {
 			textView.setTextColor(-38784);
 			textView.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
 		}

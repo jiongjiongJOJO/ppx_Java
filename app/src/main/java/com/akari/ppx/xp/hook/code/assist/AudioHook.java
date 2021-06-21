@@ -110,8 +110,7 @@ public class AudioHook extends SuperbHook {
 					if (!savedVideo[0])
 						new File(videoPath).delete();
 					Utils.showSystemToastXP(cl, String.format("已保存至DCIM/%s/audio文件夹", callStaticMethod(findClass("com.sup.android.business_utils.config.AppConfig", cl), "getDownloadDir")));
-				} catch (Throwable t) {
-					XposedBridge.log(t);
+				} catch (Throwable ignored) {
 				}
 			}
 		});
