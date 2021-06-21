@@ -4,7 +4,7 @@
 
 ---
 
-由于各种原因，皮皮虾助手选择停更。感谢各位皮友的支持，我们江湖再见。
+恢复更新，可能没有以前那么勤了，请谅解。
 
 ## 支持以下功能
 - 无损保存图片
@@ -48,8 +48,6 @@
 - 本地消息99+
 
 ## 下载
-https://pipix.lanzoux.com/b02mul3yd
-
 https://repo.xposed.info/module/com.akari.ppx
 
 ## 许可

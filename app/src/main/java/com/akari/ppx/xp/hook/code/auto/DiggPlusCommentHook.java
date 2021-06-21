@@ -30,13 +30,13 @@ public class DiggPlusCommentHook extends SuperbHook {
 		final int browseFrequency = XSP.getI(AUTO_BROWSE_FREQUENCY, 2000), diggStyle = XSP.getI(DIGG_STYLE, 10);
 		final String commentText = XSP.gets(AUTO_COMMENT_TEXT);
 		if (autoBrowse || autoDigg || autoComment)
-			hookMethod("com.sup.android.detail.ui.j", "onPageSelected", int.class, new XC_MethodHook() {
+			hookMethod("com.sup.android.detail.ui.DetailPagerFragment", "onPageSelected", int.class, new XC_MethodHook() {
 				@Override
 				protected void afterHookedMethod(MethodHookParam param) {
 					Object feedCell = ((ArrayList) getObjectField(param.thisObject, "q")).get((int) param.args[0]);
 					if (autoBrowse) {
 						if (BrowseHook.getAutoBrowse()) {
-							Object viewPager = com.akari.ppx.xp.hook.code.auto.BrowseHook.getViewPager();
+							Object viewPager = BrowseHook.getViewPager();
 							if (!autoBrowseVideoMode || findClass("com.sup.android.mi.feed.repo.bean.cell.NoteFeedItem", cl).isInstance(callMethod(feedCell, "getFeedItem"))) {
 								callMethod(viewPager, "postDelayed", new ItemThread(viewPager), (int) param.args[0] == 1 ? 1000 : browseFrequency);
 							}

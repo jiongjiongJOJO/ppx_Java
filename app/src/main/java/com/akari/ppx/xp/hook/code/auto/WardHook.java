@@ -31,7 +31,6 @@ public class WardHook extends SuperbHook {
 				hookMethod("com.sup.android.m_comment.util.helper.d", "a", long.class, long.class, "com.sup.android.m_comment.util.helper.g", ward);
 				break;
 		}
-
 	}
 
 	static class Ward extends XC_MethodHook {

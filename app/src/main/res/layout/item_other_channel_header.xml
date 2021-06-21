@@ -4,12 +4,23 @@
     android:layout_height="48dp">
 
     <TextView
+        android:id="@+id/tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginStart="16dp"
         android:text="@string/other_channel"
         android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/tv"
+        android:layout_marginStart="16dp"
+        android:layout_toEndOf="@id/tv"
+        android:text="@string/tip_channel"
+        android:textColor="@color/tip"
+        android:textSize="12sp" />
 
     <View
         android:layout_width="match_parent"

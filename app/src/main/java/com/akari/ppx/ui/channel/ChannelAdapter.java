@@ -3,6 +3,7 @@ package com.akari.ppx.ui.channel;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Typeface;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -225,13 +226,21 @@ public class ChannelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 	public void onBindViewHolder(@NotNull RecyclerView.ViewHolder holder, int position) {
 		if (holder instanceof MyViewHolder) {
 			MyViewHolder myHolder = (MyViewHolder) holder;
-			myHolder.textView.setText(myChannelItems.get(position - COUNT_PRE_MY_HEADER).getPureName());
+			setBoldText(myHolder.textView, myChannelItems.get(position - COUNT_PRE_MY_HEADER));
 			myHolder.imgEdit.setVisibility(isEditMode ? View.VISIBLE : View.INVISIBLE);
 		} else if (holder instanceof OtherViewHolder) {
-			((OtherViewHolder) holder).textView.setText(otherChannelItems.get(position - myChannelItems.size() - COUNT_PRE_OTHER_HEADER).getPureName());
+			setBoldText(((OtherViewHolder) holder).textView, otherChannelItems.get(position - myChannelItems.size() - COUNT_PRE_OTHER_HEADER));
 		} else if (holder instanceof MyChannelHeaderViewHolder) {
 			MyChannelHeaderViewHolder headerHolder = (MyChannelHeaderViewHolder) holder;
 			headerHolder.tvBtnEdit.setText(isEditMode ? R.string.finish : R.string.edit);
+		}
+	}
+
+	private void setBoldText(TextView textView, ChannelEntity entity) {
+		textView.setText(entity.getName());
+		if(entity.isParentChannel()){
+			textView.setTextColor(-38784);
+			textView.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
 		}
 	}
 

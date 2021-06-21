@@ -32,9 +32,9 @@ public class AudioHook extends SuperbHook {
 
 	@Override
 	protected void onHook(ClassLoader cl) {
+		if (!XSP.get(SAVE_AUDIO)) return;
 		final String[] name = new String[1], path = new String[1];
 		final boolean[] savedVideo = new boolean[1];
-		if (!XSP.get(SAVE_AUDIO)) return;
 		hookMethod("com.sup.superb.feedui.docker.part.m", "d", "com.sup.android.mi.feed.repo.bean.cell.AbsFeedCell", new XC_MethodHook() {
 			@Override
 			protected void afterHookedMethod(MethodHookParam param) {

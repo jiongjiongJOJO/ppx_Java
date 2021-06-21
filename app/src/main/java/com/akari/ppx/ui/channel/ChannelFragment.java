@@ -73,7 +73,7 @@ public class ChannelFragment extends Fragment {
 		List<ChannelEntity> finalItems = items;
 		Utils.setPreferenceWorldWritable(context);
 		adapter.setOnMyChannelItemClickListener((v, position) -> {
-			String channelName = finalItems.get(position).getPureName();
+			String channelName = finalItems.get(position).getName();
 			ChannelUtils.setDefaultChannel(channelName);
 			Utils.setPreferenceWorldWritable(context);
 			Toast.makeText(context, "当前默认频道：" + channelName, Toast.LENGTH_SHORT).show();

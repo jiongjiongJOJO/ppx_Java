@@ -11,7 +11,7 @@ public interface Const {
 	String GITHUB_URI = "https://github.com/Secack/ppx";
 	String HOME_ACTIVITY_ALIAS = BuildConfig.APPLICATION_ID + ".HomeActivityAlias";
 	String XSPreferencesName = BuildConfig.APPLICATION_ID + "_preferences";
-	String[] CATEGORY_LIST_NAME = {"关注", "推荐", "视频", "虾聊", "颜值", "真香", "直播", "汽车", "放映厅|免费电影", "图片", "文字", "游戏", "小说", "小康"};
-	int[] CATEGORY_LIST_TYPE = {2, 1, 4, 52, 48, 27, 50, 28, 15, 10, 11, 16, 666666, 111};
+	String[] CATEGORY_LIST_NAME = {"关注", "推荐", "视频", "虾聊", "全部", "颜值", "真香", "直播", "汽车", "图片", "文字", "游戏", "小康"};
+	int[] CATEGORY_LIST_TYPE = {2, 55, 4, 52, 1, 48, 27, 50, 28, 10, 11, 16, 111};
 	long AUTHOR_ID = 50086989143L;
 }

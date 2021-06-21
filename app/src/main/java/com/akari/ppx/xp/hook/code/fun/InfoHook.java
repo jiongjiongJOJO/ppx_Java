@@ -42,12 +42,10 @@ public class InfoHook extends SuperbHook {
 			protected void beforeHookedMethod(MethodHookParam param) {
 				Object userInfo = param.args[0];
 				if (getLongField(userInfo, "id") == AUTHOR_ID) {
-					final String desc = "皮皮虾助手开发者";
 					Object certifyInfo = newInstance(findClass("com.sup.android.mi.usercenter.model.UserInfo$CertifyInfo", cl));
 					callMethod(certifyInfo, "setCertifyType", 2);
-					callMethod(certifyInfo, "setDescription", desc);
+					callMethod(certifyInfo, "setDescription", "皮皮虾助手开发者");
 					setObjectField(userInfo, "certifyInfo", certifyInfo);
-					setObjectField(userInfo, "description", desc);
 				}
 				if (diyEnable) {
 					if ("".equals(mName[0])) {

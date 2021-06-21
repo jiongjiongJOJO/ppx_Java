@@ -349,11 +349,6 @@
             android:key="@string/pref_donate_by_alipay"
             android:summary="@string/pref_donate_by_alipay_summary"
             android:title="@string/pref_donate_by_alipay_title" />
-        <Preference
-            android:icon="@drawable/ic_qq_group"
-            android:key="@string/pref_join_qq_group"
-            android:summary="@string/pref_join_qq_group_summary"
-            android:title="@string/pref_join_qq_group_title" />
         <SwitchPreference
             android:defaultValue="false"
             android:icon="@drawable/ic_hide"
