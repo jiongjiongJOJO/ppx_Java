@@ -60,7 +60,7 @@ public class Utils {
 
 	public static void showError(ClassLoader cl, Context context) {
 		showDialogXP(cl, context, "皮皮虾助手出错", "QAQ出错啦！调用栈如下：\n" + SuperbHook.ex.toString() + "\n请选择合适的皮皮虾&皮皮虾助手版本"
-				, "加群反馈", v -> joinQQGroup(context), null, null);
+				, null, null, null, null);
 	}
 
 	@SuppressLint({"SetWorldWritable", "SetWorldReadable"})
@@ -106,16 +106,6 @@ public class Utils {
 		try {
 			Intent intent = new Intent(Intent.ACTION_VIEW);
 			intent.setData(Uri.parse(Const.ALIPAY_URI));
-			context.startActivity(intent);
-		} catch (Exception ignored) {
-		}
-	}
-
-	public static void joinQQGroup(Context context) {
-		try {
-			Intent intent = new Intent();
-			intent.setData(Uri.parse(Const.QQ_GROUP_URI));
-			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			context.startActivity(intent);
 		} catch (Exception ignored) {
 		}

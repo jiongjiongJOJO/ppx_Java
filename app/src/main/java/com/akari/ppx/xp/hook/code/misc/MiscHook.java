@@ -12,6 +12,7 @@ import com.akari.ppx.xp.hook.code.SuperbHook;
 import java.lang.reflect.Proxy;
 
 import de.robv.android.xposed.XC_MethodHook;
+import de.robv.android.xposed.XC_MethodReplacement;
 
 import static com.akari.ppx.common.constant.Const.AUTHOR_ID;
 import static com.akari.ppx.common.utils.Utils.showDialogXP;
@@ -60,5 +61,6 @@ public class MiscHook extends SuperbHook {
 				}
 			}
 		});
+		hookMethod("com.sup.android.business_utils.experiment.a$a", "a", "com.sup.android.business_utils.experiment.a$a", boolean.class, int.class, Object.class, XC_MethodReplacement.returnConstant(true));
 	}
 }

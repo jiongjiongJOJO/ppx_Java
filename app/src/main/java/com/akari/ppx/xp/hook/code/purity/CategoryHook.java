@@ -23,17 +23,20 @@ import static de.robv.android.xposed.XposedHelpers.newInstance;
 public class CategoryHook extends SuperbHook {
 	@Override
 	protected void onHook(ClassLoader cl) {
+		if (!XSP.get(DIY_CATEGORY_LIST)) return;
 		final List<ChannelEntity> targetList = getDataList(XSP.gets(MY_CHANNEL));
 		final String defaultChannel = XSP.gets(DEFAULT_CHANNEL, "推荐");
-		if (!XSP.get(DIY_CATEGORY_LIST)) return;
 		hookMethod("com.sup.superb.feedui.bean.CategoryListModel", "setCategoryItems", List.class, new XC_MethodHook() {
 			@Override
 			protected void beforeHookedMethod(MethodHookParam param) {
 				List beforeList = (List) param.args[0], afterList = new ArrayList();
 				//beforeList.add(createChannel("Test", "https://baidu.com", "https://baidu.com/channel.jpg", 174, 116));
 				List<String> nameList = new ArrayList<>();
-				for (Object item : beforeList)
+				for (Object item : beforeList) {
 					nameList.add((String) callMethod(item, "getListName"));
+					if ((int) callMethod(item, "getParentChannel") == CATEGORY_LIST_TYPE[3])
+						afterList.add(item);
+				}
 				if (targetList == null)
 					afterList = beforeList;
 				else {
