@@ -19,6 +19,6 @@ public class ChannelEntity implements Serializable {
 	}
 
 	public boolean isParentChannel() {
-		return Arrays.asList(Const.CATEGORY_LIST_NAME).indexOf(name) < 4;
+		return Arrays.asList(Const.CATEGORY_LIST_NAME_NEW).indexOf(name) < 4;
 	}
 }

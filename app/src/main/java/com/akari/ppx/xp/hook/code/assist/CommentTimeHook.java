@@ -16,7 +16,7 @@ public class CommentTimeHook extends SuperbHook {
 		final String todayFormat = XSP.gets(TODAY_COMMENT_TIME_FORMAT, "今天HH点mm分ss秒"), exactFormat = XSP.gets(EXACT_COMMENT_TIME_FORMAT, "yyyy-MM-dd HH:mm:ss");
 		hookMethod(SHOW_COMMENT_TIME, "com.sup.superb.m_feedui_common.util.a", "a", long.class, "kotlin.jvm.functions.Function0", new XC_MethodReplacement() {
 			@Override
-			protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
+			protected Object replaceHookedMethod(MethodHookParam param) {
 				return Utils.ts2date((Long) param.args[0], Utils.isToday((Long) param.args[0]) ? todayFormat : exactFormat, false);
 			}
 		});

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.akari.ppx">
 
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
     <application
         android:name="com.akari.ppx.ui.App"
         android:allowBackup="false"

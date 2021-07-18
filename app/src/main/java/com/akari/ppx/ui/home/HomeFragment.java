@@ -28,6 +28,7 @@ import java.util.Objects;
 
 public class HomeFragment extends PreferenceFragmentCompat implements Preference.OnPreferenceClickListener, Preference.OnPreferenceChangeListener {
 	private final HomeActivity context;
+	private boolean isModuleEnabled;
 
 	public HomeFragment(HomeActivity context) {
 		this.context = context;
@@ -37,8 +38,7 @@ public class HomeFragment extends PreferenceFragmentCompat implements Preference
 	@Override
 	public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		if (ModuleUtils.isModuleEnabled_Xposed() || ModuleUtils.isModuleEnabled_Taichi(context))
-			return;
+		if (isModuleEnabled) return;
 		ActionBar actionBar = ((HomeActivity) requireActivity()).getSupportActionBar();
 		Objects.requireNonNull(actionBar).setTitle(String.format("%s [%s]", actionBar.getTitle(), "未激活"));
 	}
@@ -55,11 +55,18 @@ public class HomeFragment extends PreferenceFragmentCompat implements Preference
 		NeutralButton.OnClickListener listener = text -> Utils.showToast(getActivity(), Utils.checkTextValid(text));
 		setSummaryWithButton(Prefs.REMOVE_COMMENT_KEYWORDS, listener, true);
 		setSummaryWithButton(Prefs.REMOVE_COMMENT_USERS, listener, true);
+		setSummaryWithButton(Prefs.REMOVE_ITEM_KEYWORDS, listener, true);
+		setSummaryWithButton(Prefs.REMOVE_ITEM_USERS, listener, true);
 		findPreference(Prefs.DIY_CATEGORY_LIST).setOnPreferenceChangeListener(this);
 		findPreference(Prefs.REMOVE_BOTTOM_VIEW).setOnPreferenceChangeListener(this);
 		findPreference(Prefs.DONATE).setOnPreferenceClickListener(this);
+		isModuleEnabled = ModuleUtils.isModuleEnabled_Xposed() || ModuleUtils.isModuleEnabled_Taichi(context);
+		findPreference(Prefs.JOIN_QQ_GROUP).setVisible(isModuleEnabled);
+		findPreference(Prefs.JOIN_QQ_GROUP).setOnPreferenceClickListener(this);
 		findPreference(Prefs.HIDE_LAUNCHER_ICON).setOnPreferenceChangeListener(this);
 		findPreference(Prefs.SOURCE_CODE).setOnPreferenceClickListener(this);
+		Preference prefVer = findPreference(Prefs.BEST_FIT_VERSION);
+		prefVer.setSummary(String.format(prefVer.getSummary().toString(), Const.BEST_FIT_VERSION));
 		listener = text -> Utils.showToast(getActivity(), Utils.ts2date(System.currentTimeMillis(), text, true));
 		setSummaryWithButton(Prefs.TODAY_COMMENT_TIME_FORMAT, listener, false);
 		setSummaryWithButton(Prefs.EXACT_COMMENT_TIME_FORMAT, listener, false);
@@ -80,6 +87,9 @@ public class HomeFragment extends PreferenceFragmentCompat implements Preference
 		switch (Prefs.fromString(preference.getKey())) {
 			case DONATE:
 				Utils.donateByAlipay(context);
+				break;
+			case JOIN_QQ_GROUP:
+				Utils.joinQQGroup(context);
 				break;
 			case SOURCE_CODE:
 				Utils.showGitPage(context);

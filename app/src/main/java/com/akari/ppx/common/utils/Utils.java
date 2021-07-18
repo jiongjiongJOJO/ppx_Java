@@ -111,6 +111,16 @@ public class Utils {
 		}
 	}
 
+	public static void joinQQGroup(Context context) {
+		try {
+			Intent intent = new Intent();
+			intent.setData(Uri.parse(Const.QQ_GROUP_URI));
+			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			context.startActivity(intent);
+		} catch (Exception ignored) {
+		}
+	}
+
 	public static void showGitPage(Context context) {
 		try {
 			Intent intent = new Intent(Intent.ACTION_VIEW);

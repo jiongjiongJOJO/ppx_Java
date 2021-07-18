@@ -17,7 +17,6 @@ import java.util.Map;
 
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XC_MethodReplacement;
-import de.robv.android.xposed.XposedBridge;
 
 import static com.akari.ppx.common.constant.Prefs.SAVE_AUDIO;
 import static de.robv.android.xposed.XposedHelpers.callMethod;

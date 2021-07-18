@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.akari.ppx.common.constant.Const.CATEGORY_LIST_NAME;
+import static com.akari.ppx.common.constant.Const.CATEGORY_LIST_NAME_NEW;
 
 public class ChannelFragment extends Fragment {
 	private final ChannelActivity context;
@@ -44,23 +45,23 @@ public class ChannelFragment extends Fragment {
 	public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		ChannelUtils.initSP(context.getSharedPreferences(Const.XSPreferencesName, 0));
-		List<ChannelEntity> items = ChannelUtils.getSPDataList(Prefs.MY_CHANNEL);
+		boolean isNewCategory = ChannelUtils.isNewCategory();
+		List<ChannelEntity> items = ChannelUtils.getSPDataList(isNewCategory ? Prefs.MY_CHANNEL_NEW : Prefs.MY_CHANNEL);
 		if (items == null) {
 			items = new ArrayList<>();
-			for (String s : CATEGORY_LIST_NAME) {
+			for (String s : isNewCategory ? CATEGORY_LIST_NAME_NEW : CATEGORY_LIST_NAME) {
 				ChannelEntity entity = new ChannelEntity();
 				entity.setName(s);
 				items.add(entity);
 			}
 		}
-		final List<ChannelEntity> otherItems = ChannelUtils.getSPDataList(Prefs.OTHER_CHANNEL);
+		final List<ChannelEntity> otherItems = ChannelUtils.getSPDataList(isNewCategory ? Prefs.OTHER_CHANNEL_NEW : Prefs.OTHER_CHANNEL);
 		GridLayoutManager manager = new GridLayoutManager(context, 4);
 		RecyclerView recyclerview = (requireActivity()).findViewById(R.id.recy);
 		recyclerview.setLayoutManager(manager);
 		ItemDragHelperCallback callback = new ItemDragHelperCallback();
 		final ItemTouchHelper helper = new ItemTouchHelper(callback);
 		helper.attachToRecyclerView(recyclerview);
-
 		final ChannelAdapter adapter = new ChannelAdapter(context, helper, items, otherItems != null ? otherItems : new ArrayList<>());
 		manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
 			@Override
@@ -74,7 +75,9 @@ public class ChannelFragment extends Fragment {
 		Utils.setPreferenceWorldWritable(context);
 		adapter.setOnMyChannelItemClickListener((v, position) -> {
 			String channelName = finalItems.get(position).getName();
-			ChannelUtils.setDefaultChannel(channelName);
+			if (isNewCategory)
+				ChannelUtils.setDefaultChannelNew(channelName);
+			else ChannelUtils.setDefaultChannel(channelName);
 			Utils.setPreferenceWorldWritable(context);
 			Toast.makeText(context, "当前默认频道：" + channelName, Toast.LENGTH_SHORT).show();
 		});

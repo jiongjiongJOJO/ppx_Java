@@ -17,9 +17,9 @@ import static de.robv.android.xposed.XposedHelpers.setObjectField;
 public class WardHook extends SuperbHook {
 	@Override
 	protected void onHook(ClassLoader cl) {
+		if (!XSP.get(AUTO_WARD_ENABLE)) return;
 		final int condition = XSP.getI(AUTO_WARD_CONDITION, 0);
 		Ward ward = new Ward(condition, cl);
-		if (!XSP.get(AUTO_WARD_ENABLE)) return;
 		switch (condition) {
 			case 0:
 				hookMethod("com.sup.android.detail.util.o", "a", int.class, long.class, boolean.class, int.class, int.class, ward);

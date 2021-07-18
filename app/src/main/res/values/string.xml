@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">皮皮虾助手</string>
-    <string name="channel_title">管理频道</string>
     <string name="xposed_description">清风深知杨柳意，啤酒龙虾再相聚</string>
+    <string name="channel_title">管理频道</string>
     <string name="pref_save_image">pref_save_image</string>
     <string name="pref_save_video">pref_save_video</string>
     <string name="pref_remove_ads">pref_remove_ads</string>
@@ -14,8 +14,13 @@
     <string name="pref_remove_comment">pref_remove_comment</string>
     <string name="pref_remove_comment_keywords">pref_remove_comment_keywords</string>
     <string name="pref_remove_comment_users">pref_remove_comment_users</string>
+    <string name="pref_remove_item">pref_remove_item</string>
+    <string name="pref_remove_item_keywords">pref_remove_item_keywords</string>
+    <string name="pref_remove_item_users">pref_remove_item_users</string>
+    <string name="pref_remove_item_official">pref_remove_item_official</string>
     <string name="pref_remove_avatar_decoration">pref_remove_avatar_decoration</string>
     <string name="pref_disable_history_items">pref_disable_history_items</string>
+    <string name="pref_use_new_category_list">pref_use_new_category_list</string>
     <string name="pref_diy_category_list">pref_diy_category_list</string>
     <string name="pref_remove_restrictions">pref_remove_restrictions</string>
     <string name="pref_show_register_escape_time">pref_show_register_escape_time</string>
@@ -23,7 +28,7 @@
     <string name="pref_copy_item">pref_copy_item</string>
     <string name="pref_unlock_illegal_word">pref_unlock_illegal_word</string>
     <string name="pref_unlock_danmaku">pref_unlock_danmaku</string>
-    <string name="pref_unlock_1080p_limit">pref_unlock_1080p_limit</string>
+    <string name="pref_unlock_search_user_limit">pref_unlock_search_user_limit</string>
     <string name="pref_unlock_emoji_limit">pref_unlock_emoji_limit</string>
     <string name="pref_unlock_send_god_limit">pref_unlock_send_god_limit</string>
     <string name="pref_unlock_video_comment_limit">pref_unlock_video_comment_limit</string>
@@ -41,6 +46,7 @@
     <string name="pref_digg_style">pref_digg_style</string>
     <string name="pref_auto_digg_pause">pref_auto_digg_pause</string>
     <string name="pref_auto_comment_enable">pref_auto_comment_enable</string>
+    <string name="pref_auto_comment_digg_enable">pref_auto_comment_digg_enable</string>
     <string name="pref_auto_comment_text">pref_auto_comment_text</string>
     <string name="pref_auto_comment_pause">pref_auto_comment_pause</string>
     <string name="pref_auto_ward_enable">pref_auto_ward_enable</string>
@@ -64,8 +70,10 @@
     <string name="pref_point">pref_point</string>
     <string name="pref_about">pref_about</string>
     <string name="pref_donate_by_alipay">pref_donate_by_alipay</string>
+    <string name="pref_join_qq_group">pref_join_qq_group</string>
     <string name="pref_hide_launcher_icon">pref_hide_launcher_icon</string>
     <string name="pref_source_code">pref_source_code</string>
+    <string name="best_fit_version">best_fit_version</string>
     <string name="edit">编辑</string>
     <string name="finish">完成</string>
     <string name="tip_drag">单击设置默认频道，拖拽排序</string>
@@ -73,6 +81,8 @@
     <string name="my_channel">我的频道</string>
     <string name="other_channel">其他频道</string>
     <string name="reset">重置</string>
+    <string name="start_app">启动皮皮虾</string>
+    <string name="exit">退出</string>
 
     <string name="pref_purify_title">净化功能</string>
     <string name="pref_save_image_title">图片去水印</string>
@@ -97,10 +107,18 @@
     <string name="pref_remove_comment_summary">依据关键词/用户名屏蔽评论</string>
     <string name="pref_remove_comment_keywords_title">关键词</string>
     <string name="pref_remove_comment_users_title">用户名</string>
+    <string name="pref_remove_item_title">屏蔽帖子（以|分割，支持正则表达式）</string>
+    <string name="pref_remove_item_summary">依据关键词/用户名屏蔽帖子</string>
+    <string name="pref_remove_item_keywords_title">关键词</string>
+    <string name="pref_remove_item_users_title">用户名</string>
+    <string name="pref_remove_item_official_title">屏蔽官方账号帖子</string>
+    <string name="pref_remove_item_official_summary">支持严惩！（懂得都懂</string>
     <string name="pref_remove_avatar_decoration_title">屏蔽头像挂饰</string>
-    <string name="pref_remove_avatar_decoration_summary">移除花里胡哨的活动挂饰</string>
+    <string name="pref_remove_avatar_decoration_summary">移除活动挂饰</string>
     <string name="pref_disable_history_items_title">关闭浏览历史记录</string>
     <string name="pref_disable_history_items_summary">不再记录浏览历史</string>
+    <string name="pref_use_new_category_list_title">使用父子频道</string>
+    <string name="pref_use_new_category_list_summary">影响管理频道</string>
     <string name="pref_diy_category_list_title">管理频道</string>
     <string name="pref_diy_category_list_summary">自定义头部版块</string>
 
@@ -117,8 +135,8 @@
     <string name="pref_unlock_illegal_word_summary">允许使用被和谐词语(如🐂🍺等)</string>
     <string name="pref_unlock_danmaku_title">解锁高级弹幕特权</string>
     <string name="pref_unlock_danmaku_summary">允许使用彩色弹幕、置顶/置底弹幕</string>
-    <string name="pref_unlock_1080p_limit_title">解除发帖1080P限制</string>
-    <string name="pref_unlock_1080p_limit_summary">发帖时支持1080P以上的视频</string>
+    <string name="pref_unlock_search_user_limit_title">解除搜索用户限制</string>
+    <string name="pref_unlock_search_user_limit_summary">允许搜索用户的评论/插眼</string>
     <string name="pref_unlock_emoji_limit_title">解除收藏表情数限制</string>
     <string name="pref_unlock_emoji_limit_summary">支持收藏更多的表情(≥175)</string>
     <string name="pref_unlock_send_god_limit_title">解除神评已送满限制</string>
@@ -154,6 +172,8 @@
     <string name="pref_auto_ward_condition_summary">%s</string>
     <string name="pref_auto_send_god_enable_title">自动为已送满的评论送神</string>
     <string name="pref_auto_send_god_enable_summary">对评论生效</string>
+    <string name="pref_auto_comment_digg_enable_title">自动评论点赞</string>
+    <string name="pref_auto_comment_digg_enable_summary">评论时为自己点赞</string>
     <string name="pref_auto_send_god_time_limit_title">限定评论时间</string>
     <string name="pref_auto_send_god_time_limit_summary">%s</string>
     <string name="pref_modify_share_counts_title">自动刷转发次数</string>
@@ -179,14 +199,16 @@
     <string name="pref_point_title">积分</string>
 
     <string name="pref_about_title">关于</string>
-    <string name="pref_about_author_title">开发组</string>
-    <string name="pref_about_author_summary">阿卡林、Skyhand、污帝多么寂寞</string>
-    <string name="pref_donate_by_alipay_title">支付宝捐赠</string>
-    <string name="pref_donate_by_alipay_summary">我很可爱，请给我钱～</string>
+    <string name="pref_donate_by_alipay_title">捐赠支持</string>
+    <string name="pref_donate_by_alipay_summary">加油，大哥哥！</string>
+    <string name="pref_join_qq_group_title">聊天&amp;反馈&amp;提建议</string>
+    <string name="pref_join_qq_group_summary">QQ群：950678609</string>
     <string name="pref_hide_launcher_icon_title">隐藏图标</string>
-    <string name="pref_hide_launcher_icon_summary">隐藏后从模块列表启动</string>
+    <string name="pref_hide_launcher_icon_summary">隐藏后从模块列表或APP内启动</string>
+    <string name="pref_best_fit_version_title">最佳适配版本</string>
+    <string name="pref_best_fit_version_summary">皮皮虾 %s</string>
     <string name="pref_source_code_title">项目源码</string>
-    <string name="pref_source_code_summary"><![CDATA[才，才不是想要你的Star呢！<(｀^´)>]]></string>
+    <string name="pref_source_code_summary">By Secack</string>
 
     <string-array name="play_speed">
         <item>@string/play_speed_0</item>

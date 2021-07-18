@@ -18,7 +18,7 @@ public class AvatarHook extends SuperbHook {
 			protected void afterHookedMethod(MethodHookParam param) {
 				List list = (List) param.getResult();
 				if (list != null) {
-					for (int i = 0; i < list.size(); i++) {
+					for (int i = list.size() - 1; i >= 0; i--) {
 						List infos = (List) getObjectField(list.get(i), "decorationInfos");
 						if (getIntField(infos.get(0), "decorationType") == 2) {
 							list.remove(i);

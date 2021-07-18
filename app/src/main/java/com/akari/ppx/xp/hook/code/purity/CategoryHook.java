@@ -11,10 +11,15 @@ import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XC_MethodReplacement;
 
 import static com.akari.ppx.common.constant.Const.CATEGORY_LIST_NAME;
+import static com.akari.ppx.common.constant.Const.CATEGORY_LIST_NAME_NEW;
 import static com.akari.ppx.common.constant.Const.CATEGORY_LIST_TYPE;
+import static com.akari.ppx.common.constant.Const.CATEGORY_LIST_TYPE_NEW;
 import static com.akari.ppx.common.constant.Prefs.DEFAULT_CHANNEL;
+import static com.akari.ppx.common.constant.Prefs.DEFAULT_CHANNEL_NEW;
 import static com.akari.ppx.common.constant.Prefs.DIY_CATEGORY_LIST;
 import static com.akari.ppx.common.constant.Prefs.MY_CHANNEL;
+import static com.akari.ppx.common.constant.Prefs.MY_CHANNEL_NEW;
+import static com.akari.ppx.common.constant.Prefs.USE_NEW_CATEGORY_LIST;
 import static com.akari.ppx.common.utils.ChannelUtils.getDataList;
 import static de.robv.android.xposed.XposedHelpers.callMethod;
 import static de.robv.android.xposed.XposedHelpers.findClass;
@@ -23,9 +28,11 @@ import static de.robv.android.xposed.XposedHelpers.newInstance;
 public class CategoryHook extends SuperbHook {
 	@Override
 	protected void onHook(ClassLoader cl) {
+		hookMethod("com.sup.android.business_utils.experiment.a$a", "a", "com.sup.android.business_utils.experiment.a$a", boolean.class, int.class, Object.class, XC_MethodReplacement.returnConstant(XSP.get(USE_NEW_CATEGORY_LIST)));
 		if (!XSP.get(DIY_CATEGORY_LIST)) return;
-		final List<ChannelEntity> targetList = getDataList(XSP.gets(MY_CHANNEL));
-		final String defaultChannel = XSP.gets(DEFAULT_CHANNEL, "推荐");
+		boolean isNewCategory = XSP.get(USE_NEW_CATEGORY_LIST);
+		final List<ChannelEntity> targetList = getDataList(XSP.gets(isNewCategory ? MY_CHANNEL_NEW : MY_CHANNEL));
+		final String defaultChannel = XSP.gets(isNewCategory ? DEFAULT_CHANNEL_NEW : DEFAULT_CHANNEL, "推荐");
 		hookMethod("com.sup.superb.feedui.bean.CategoryListModel", "setCategoryItems", List.class, new XC_MethodHook() {
 			@Override
 			protected void beforeHookedMethod(MethodHookParam param) {
@@ -34,7 +41,7 @@ public class CategoryHook extends SuperbHook {
 				List<String> nameList = new ArrayList<>();
 				for (Object item : beforeList) {
 					nameList.add((String) callMethod(item, "getListName"));
-					if ((int) callMethod(item, "getParentChannel") == CATEGORY_LIST_TYPE[3])
+					if (!isNewCategory && (int) callMethod(item, "getParentChannel") == CATEGORY_LIST_TYPE_NEW[3])
 						afterList.add(item);
 				}
 				if (targetList == null)
@@ -83,7 +90,7 @@ public class CategoryHook extends SuperbHook {
 			@Override
 			protected Object replaceHookedMethod(MethodHookParam param) {
 				int i = -1;
-				for (String name : CATEGORY_LIST_NAME) {
+				for (String name : isNewCategory ? CATEGORY_LIST_NAME_NEW : CATEGORY_LIST_NAME) {
 					i++;
 					if (name.contains(defaultChannel))
 						break;

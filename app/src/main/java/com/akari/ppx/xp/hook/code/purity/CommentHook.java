@@ -25,7 +25,7 @@ public class CommentHook extends SuperbHook {
 			@Override
 			protected void beforeHookedMethod(MethodHookParam param) {
 				ArrayList comments = (ArrayList) param.args[0];
-				for (int i = 0; i < comments.size(); i++) {
+				for (int i = comments.size() - 1; i >= 0; i--) {
 					Object comment = null;
 					String text, name;
 					try {
@@ -37,14 +37,14 @@ public class CommentHook extends SuperbHook {
 						name = (String) getObjectField(getObjectField(comment, "userInfo"), "name");
 						text = (String) getObjectField(comment, "text");
 					}
-					for (String keyword : keywords) {
-						if (Pattern.matches(keyword, text)) {
+					for (String k : keywords) {
+						if (Pattern.matches(k, text)) {
 							comments.remove(i);
 							break;
 						}
 					}
-					for (String user : users) {
-						if (Pattern.matches(user, name)) {
+					for (String u : users) {
+						if (Pattern.matches(u, name)) {
 							comments.remove(i);
 							break;
 						}

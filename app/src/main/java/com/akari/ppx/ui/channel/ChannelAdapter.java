@@ -32,7 +32,9 @@ import java.util.List;
 import java.util.Objects;
 
 import static com.akari.ppx.common.constant.Prefs.MY_CHANNEL;
+import static com.akari.ppx.common.constant.Prefs.MY_CHANNEL_NEW;
 import static com.akari.ppx.common.constant.Prefs.OTHER_CHANNEL;
+import static com.akari.ppx.common.constant.Prefs.OTHER_CHANNEL_NEW;
 
 public class ChannelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements OnItemMoveListener {
 	public static final int TYPE_MY_CHANNEL_HEADER = 0;
@@ -83,17 +85,17 @@ public class ChannelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 		switch (viewType) {
 			case TYPE_MY_CHANNEL_HEADER:
 				view = inflater.inflate(R.layout.item_my_channel_header, parent, false);
-				final MyChannelHeaderViewHolder holder = new MyChannelHeaderViewHolder(view);
-				holder.tvBtnEdit.setOnClickListener(v -> {
+				final MyChannelHeaderViewHolder myHeaderHolder = new MyChannelHeaderViewHolder(view);
+				myHeaderHolder.tvBtnEdit.setOnClickListener(v -> {
 					if (!isEditMode) {
 						startEditMode((RecyclerView) parent);
-						holder.tvBtnEdit.setText(R.string.finish);
+						myHeaderHolder.tvBtnEdit.setText(R.string.finish);
 					} else {
 						cancelEditMode((RecyclerView) parent);
-						holder.tvBtnEdit.setText(R.string.edit);
+						myHeaderHolder.tvBtnEdit.setText(R.string.edit);
 					}
 				});
-				return holder;
+				return myHeaderHolder;
 			case TYPE_MY:
 				view = inflater.inflate(R.layout.item_my, parent, false);
 				final MyViewHolder myHolder = new MyViewHolder(view);
@@ -160,8 +162,9 @@ public class ChannelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 				return myHolder;
 			case TYPE_OTHER_CHANNEL_HEADER:
 				view = inflater.inflate(R.layout.item_other_channel_header, parent, false);
-				return new RecyclerView.ViewHolder(view) {
-				};
+				final OtherChannelHeaderViewHolder otherHeaderHolder = new OtherChannelHeaderViewHolder(view);
+				otherHeaderHolder.tvHeader.setVisibility(ChannelUtils.isNewCategory() ? View.VISIBLE : View.INVISIBLE);
+				return otherHeaderHolder;
 			case TYPE_OTHER:
 				view = inflater.inflate(R.layout.item_other, parent, false);
 				final OtherViewHolder otherHolder = new OtherViewHolder(view);
@@ -238,7 +241,7 @@ public class ChannelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
 	private void setTextWithColor(TextView textView, ChannelEntity entity) {
 		textView.setText(entity.getName());
-		if (entity.isParentChannel()) {
+		if (ChannelUtils.isNewCategory() && entity.isParentChannel()) {
 			textView.setTextColor(-38784);
 			textView.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
 		}
@@ -346,8 +349,13 @@ public class ChannelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 				imgEdit.setVisibility(View.INVISIBLE);
 		}
 		Context context = parent.getContext();
-		ChannelUtils.setSPDataList(MY_CHANNEL, myChannelItems);
-		ChannelUtils.setSPDataList(OTHER_CHANNEL, otherChannelItems);
+		if (ChannelUtils.isNewCategory()) {
+			ChannelUtils.setSPDataList(MY_CHANNEL_NEW, myChannelItems);
+			ChannelUtils.setSPDataList(OTHER_CHANNEL_NEW, otherChannelItems);
+		} else {
+			ChannelUtils.setSPDataList(MY_CHANNEL, myChannelItems);
+			ChannelUtils.setSPDataList(OTHER_CHANNEL, otherChannelItems);
+		}
 		Utils.setPreferenceWorldWritable(context);
 		Toast.makeText(context, "配置已保存", Toast.LENGTH_SHORT).show();
 	}
@@ -407,6 +415,15 @@ public class ChannelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 		public MyChannelHeaderViewHolder(View itemView) {
 			super(itemView);
 			tvBtnEdit = itemView.findViewById(R.id.tv_btn_edit);
+		}
+	}
+
+	static class OtherChannelHeaderViewHolder extends RecyclerView.ViewHolder {
+		private final TextView tvHeader;
+
+		public OtherChannelHeaderViewHolder(View itemView) {
+			super(itemView);
+			tvHeader = itemView.findViewById(R.id.tv_header);
 		}
 	}
 }

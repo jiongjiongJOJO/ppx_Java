@@ -15,8 +15,8 @@ import static de.robv.android.xposed.XposedHelpers.callMethod;
 public class FemaleTipHook extends SuperbHook {
 	@Override
 	protected void onHook(ClassLoader cl) {
-		final boolean[] entered = new boolean[1];
 		if (!XSP.get(SHOW_FEMALE_TIP)) return;
+		final boolean[] entered = new boolean[1];
 		final boolean[] isFemale = new boolean[1];
 		hookMethod("com.sup.android.mi.feed.repo.utils.AbsFeedCellUtil$Companion", "getUserName", "com.sup.android.mi.feed.repo.bean.cell.AbsFeedCell", new XC_MethodHook() {
 			@Override
