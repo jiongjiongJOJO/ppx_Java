@@ -8,7 +8,7 @@ public interface Const {
 	String NOW = "当前：";
 	String BANNED = "请卸载本模块后再启动皮皮虾";
 	String ALIPAY_URI = "alipayqr://platformapi/startapp?saId=10000007&qrcode=https://qr.alipay.com/fkx16213vf1yql4hjgu1k5c";
-	String QQ_GROUP_URI = "mqqopensdkapi://bizAgent/qm/qr?url=http%3A%2F%2Fqm.qq.com%2Fcgi-bin%2Fqm%2Fqr%3Ffrom%3Dapp%26p%3Dandroid%26jump_from%3Dwebapi%26k%3D";
+	String QQ_GROUP_URI = "mqqopensdkapi://bizAgent/qm/qr?url=http%3A%2F%2Fqm.qq.com%2Fcgi-bin%2Fqm%2Fqr%3Ffrom%3Dapp%26p%3Dandroid%26jump_from%3Dwebapi%26k%3D-EoeTh-OiwbftvNmCJ4I6K5AYOD728WB";
 	String GITHUB_URI = "https://github.com/Secack/ppx";
 	String HOME_ACTIVITY_ALIAS = BuildConfig.APPLICATION_ID + ".HomeActivityAlias";
 	String XSPreferencesName = BuildConfig.APPLICATION_ID + "_preferences";

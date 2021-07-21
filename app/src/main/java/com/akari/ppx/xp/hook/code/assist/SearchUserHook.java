@@ -33,7 +33,8 @@ public class SearchUserHook extends SuperbHook {
 		hookMethod("com.sup.android.module.profile.search.d", "a", String.class, new XC_MethodHook() {
 			@Override
 			protected void beforeHookedMethod(MethodHookParam param) {
-				param.args[0] = ((String) param.args[0]).replace("我", "他");
+				if (entered[0])
+					param.args[0] = ((String) param.args[0]).replace("我", "他");
 			}
 		});
 	}

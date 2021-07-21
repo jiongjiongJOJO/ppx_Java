@@ -10,8 +10,8 @@ import static com.akari.ppx.common.constant.Prefs.UNLOCK_VIDEO_COMMENT;
 public class VCommentHook extends SuperbHook {
 	@Override
 	protected void onHook(ClassLoader cl) {
-		final boolean[] callStatus = new boolean[1];
 		if (!XSP.get(UNLOCK_VIDEO_COMMENT)) return;
+		final boolean[] callStatus = new boolean[1];
 		hookMethod("com.sup.android.module.publish.view.k", "a", boolean.class, new XC_MethodHook() {
 			@Override
 			protected void beforeHookedMethod(MethodHookParam param) {
