@@ -26,9 +26,9 @@ public class ItemHook extends SuperbHook {
 		hookMethod("com.sup.android.module.feed.repo.manager.a", "b", "java.lang.String", "com.sup.android.mi.feed.repo.bean.FeedResponse", boolean.class, int.class, new XC_MethodHook() {
 			@Override
 			protected void beforeHookedMethod(MethodHookParam param) {
-				try {
-					ArrayList items = (ArrayList) callMethod(param.args[1], "getData");
-					for (int i = items.size() - 1; i >= 0; i--) {
+				ArrayList items = (ArrayList) callMethod(param.args[1], "getData");
+				for (int i = items.size() - 1; i >= 0; i--) {
+					try {
 						Object item = callMethod(items.get(i), "getFeedItem");
 						Object user = callMethod(item, "getAuthor");
 						String text = (String) callMethod(item, "getContent");
@@ -49,12 +49,11 @@ public class ItemHook extends SuperbHook {
 						}
 						if (removeItemOfficial) {
 							String desc = (String) callMethod(callMethod(user, "getCertifyInfo"), "getDescription");
-							if (desc.contains("官方账号") || desc.contains("新媒体")) {
+							if (desc.contains("官方账号") || desc.contains("视频号") || desc.contains("新媒体"))
 								items.remove(i);
-							}
 						}
+					} catch (Exception ignored) {
 					}
-				} catch (Exception ignored) {
 				}
 			}
 		});

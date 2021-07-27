@@ -55,6 +55,7 @@ public class FemaleTipHook extends SuperbHook {
 					SpannableString str = new SpannableString(a);
 					str.setSpan(new ForegroundColorSpan(-38784), 0, a.length(), 33);
 					param.args[0] = str;
+					isFemale[0] = false;
 				}
 			}
 		});

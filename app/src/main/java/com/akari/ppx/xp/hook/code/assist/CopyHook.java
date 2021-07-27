@@ -55,7 +55,7 @@ public class CopyHook extends SuperbHook {
 				return null;
 			}
 		});
-		hookMethod("com.sup.android.base.e.a", "a", Activity.class, "com.sup.android.mi.feed.repo.bean.cell.AbsFeedCell", String.class, String.class, String.class, HashMap.class, boolean.class, new XC_MethodReplacement() {
+		hookMethod("com.sup.android.base.f.a", "a", Activity.class, "com.sup.android.mi.feed.repo.bean.cell.AbsFeedCell", String.class, String.class, String.class, HashMap.class, boolean.class, new XC_MethodReplacement() {
 			@Override
 			protected Object replaceHookedMethod(MethodHookParam param) {
 				copyText(cl, param.args[0], param.args[1]);

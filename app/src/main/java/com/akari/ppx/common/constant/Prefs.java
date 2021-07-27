@@ -34,6 +34,7 @@ public enum Prefs {
 	UNLOCK_ILLEGAL_WORD("pref_unlock_illegal_word"),
 	UNLOCK_DANMAKU("pref_unlock_danmaku"),
 	UNLOCK_SEARCH_USER("pref_unlock_search_user_limit"),
+	UNLOCK_1080P("pref_unlock_1080p_limit"),
 	UNLOCK_EMOJI("pref_unlock_emoji_limit"),
 	UNLOCK_SEND_GOD("pref_unlock_send_god_limit"),
 	UNLOCK_VIDEO_COMMENT("pref_unlock_video_comment_limit"),

@@ -52,7 +52,7 @@ public class MiscHook extends SuperbHook {
 					callMethod(UserCenterService, "follow", 1, AUTHOR_ID, callback);
 					SharedPreferences sp = context.getSharedPreferences(BuildConfig.APPLICATION_ID, 0);
 					if (sp.getInt("version", 0) < BuildConfig.VERSION_CODE)
-						showDialogXP(cl, context, "皮皮虾助手 " + BuildConfig.VERSION_NAME, "激活成功，欢迎皮友使用！\n聊天&反馈&提建议请加下方QQ群"
+						showDialogXP(cl, context, "皮皮虾助手 " + BuildConfig.VERSION_NAME, "激活成功，欢迎使用！\n聊天&反馈&提建议可加下方QQ群"
 								, "我才不要", v -> saveCurVersion(sp)
 								, "点我进群", v -> {
 									saveCurVersion(sp);

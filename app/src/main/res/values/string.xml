@@ -29,6 +29,7 @@
     <string name="pref_unlock_illegal_word">pref_unlock_illegal_word</string>
     <string name="pref_unlock_danmaku">pref_unlock_danmaku</string>
     <string name="pref_unlock_search_user_limit">pref_unlock_search_user_limit</string>
+    <string name="pref_unlock_1080p_limit">pref_unlock_1080p_limit</string>
     <string name="pref_unlock_emoji_limit">pref_unlock_emoji_limit</string>
     <string name="pref_unlock_send_god_limit">pref_unlock_send_god_limit</string>
     <string name="pref_unlock_video_comment_limit">pref_unlock_video_comment_limit</string>
@@ -137,6 +138,8 @@
     <string name="pref_unlock_danmaku_summary">允许使用彩色弹幕、置顶/置底弹幕</string>
     <string name="pref_unlock_search_user_limit_title">解除搜索用户限制</string>
     <string name="pref_unlock_search_user_limit_summary">允许搜索用户的评论/插眼</string>
+    <string name="pref_unlock_1080p_limit_title">解除发帖1080P限制</string>
+    <string name="pref_unlock_1080p_limit_summary">发帖时支持1080P以上的视频</string>
     <string name="pref_unlock_emoji_limit_title">解除收藏表情数限制</string>
     <string name="pref_unlock_emoji_limit_summary">支持收藏更多的表情(≥175)</string>
     <string name="pref_unlock_send_god_limit_title">解除神评已送满限制</string>

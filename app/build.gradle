@@ -18,8 +18,8 @@ android {
         applicationId "com.akari.ppx"
         minSdkVersion 21
         targetSdkVersion 27
-        versionCode 180
-        versionName '1.8'
+        versionCode 181
+        versionName '1.8.1'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
