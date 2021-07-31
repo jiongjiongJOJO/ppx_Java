@@ -51,13 +51,13 @@
             android:key="@string/pref_remove_comment"
             android:summary="@string/pref_remove_comment_summary"
             android:title="@string/pref_remove_comment_title" />
-        <com.akari.ppx.common.preference.NeutralEditPreference
+        <com.akari.ppx.common.preference.TestEditPreference
             android:defaultValue=".*送了.*|.*送|.*神了.*|.*送神.*|.*啃了.*|.*啃|.*肯|.*赌.*神|试试|刷|冲|.*至尊.*|.*💎.*|尊|金|银|铜|青铜.*|，|。|、|"
             android:dependency="@string/pref_remove_comment"
             android:key="@string/pref_remove_comment_keywords"
             android:negativeButtonText="@string/reset"
             android:title="@string/pref_remove_comment_keywords_title" />
-        <com.akari.ppx.common.preference.NeutralEditPreference
+        <com.akari.ppx.common.preference.TestEditPreference
             android:defaultValue="至尊军团.*|散仙阁.*|神评学院.*|"
             android:dependency="@string/pref_remove_comment"
             android:key="@string/pref_remove_comment_users"
@@ -68,13 +68,13 @@
             android:key="@string/pref_remove_item"
             android:summary="@string/pref_remove_item_summary"
             android:title="@string/pref_remove_item_title" />
-        <com.akari.ppx.common.preference.NeutralEditPreference
+        <com.akari.ppx.common.preference.TestEditPreference
             android:defaultValue=""
             android:dependency="@string/pref_remove_item"
             android:key="@string/pref_remove_item_keywords"
             android:negativeButtonText="@string/reset"
             android:title="@string/pref_remove_item_keywords_title" />
-        <com.akari.ppx.common.preference.NeutralEditPreference
+        <com.akari.ppx.common.preference.TestEditPreference
             android:defaultValue=""
             android:dependency="@string/pref_remove_item"
             android:key="@string/pref_remove_item_users"
@@ -175,15 +175,28 @@
             android:title="@string/pref_show_female_tip_title" />
         <SwitchPreference
             android:defaultValue="false"
+            android:key="@string/pref_set_color_comment"
+            android:summary="@string/pref_set_color_comment_summary"
+            android:title="@string/pref_set_color_comment_title" />
+        <ListPreference
+            android:defaultValue="3"
+            android:dependency="@string/pref_set_color_comment"
+            android:entries='@array/color_type'
+            android:entryValues="@array/color_type_values"
+            android:key="@string/pref_set_color_type"
+            android:summary="@string/pref_set_color_type_summary"
+            android:title="@string/pref_set_color_type_title" />
+        <SwitchPreference
+            android:defaultValue="false"
             android:key="@string/pref_show_exact_comment_time"
             android:title="@string/pref_show_exact_comment_time_title" />
-        <com.akari.ppx.common.preference.NeutralEditPreference
-            android:defaultValue="今天HH点mm分ss秒"
+        <com.akari.ppx.common.preference.TestEditPreference
+            android:defaultValue="今天HH点mm分ss秒|昨天HH点mm分ss秒|前天HH点mm分ss秒|"
             android:dependency="@string/pref_show_exact_comment_time"
-            android:key="@string/pref_show_today_comment_time_format"
+            android:key="@string/pref_show_recent_comment_time_format"
             android:negativeButtonText="@string/reset"
-            android:title="@string/pref_show_today_comment_time_format_title" />
-        <com.akari.ppx.common.preference.NeutralEditPreference
+            android:title="@string/pref_show_recent_comment_time_format_title" />
+        <com.akari.ppx.common.preference.TestEditPreference
             android:defaultValue="yyyy-MM-dd HH:mm:ss"
             android:dependency="@string/pref_show_exact_comment_time"
             android:key="@string/pref_show_exact_comment_time_format"
@@ -348,25 +361,25 @@
             android:key="@string/pref_description"
             android:negativeButtonText="@string/reset"
             android:title="@string/pref_description_title" />
-        <com.akari.ppx.common.preference.NeutralEditPreference
+        <com.akari.ppx.common.preference.TestEditPreference
             android:defaultValue=""
             android:dependency="@string/pref_diy_enable"
             android:key="@string/pref_like_count"
             android:negativeButtonText="@string/reset"
             android:title="@string/pref_like_count_title" />
-        <com.akari.ppx.common.preference.NeutralEditPreference
+        <com.akari.ppx.common.preference.TestEditPreference
             android:defaultValue=""
             android:dependency="@string/pref_diy_enable"
             android:key="@string/pref_followers_count"
             android:negativeButtonText="@string/reset"
             android:title="@string/pref_followers_count_title" />
-        <com.akari.ppx.common.preference.NeutralEditPreference
+        <com.akari.ppx.common.preference.TestEditPreference
             android:defaultValue=""
             android:dependency="@string/pref_diy_enable"
             android:key="@string/pref_following_count"
             android:negativeButtonText="@string/reset"
             android:title="@string/pref_following_count_title" />
-        <com.akari.ppx.common.preference.NeutralEditPreference
+        <com.akari.ppx.common.preference.TestEditPreference
             android:defaultValue=""
             android:dependency="@string/pref_diy_enable"
             android:key="@string/pref_point"

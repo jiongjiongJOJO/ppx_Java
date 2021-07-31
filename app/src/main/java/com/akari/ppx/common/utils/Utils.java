@@ -29,7 +29,7 @@ import static de.robv.android.xposed.XposedHelpers.findClass;
 import static de.robv.android.xposed.XposedHelpers.newInstance;
 
 public class Utils {
-	public static void showToast(Context context, String text) {
+	public static void showToast(Context context, CharSequence text) {
 		Toast.makeText(context, text, Toast.LENGTH_SHORT).show();
 	}
 
@@ -88,13 +88,17 @@ public class Utils {
 		return new SimpleDateFormat(pattern, Locale.CHINA).format(new Date(ts * (isMillis ? 1 : 1000)), new StringBuffer(), new FieldPosition(0)).toString();
 	}
 
-	public static boolean isToday(long ts) {
+	public static String getNowDate(String pattern) {
+		return ts2date(System.currentTimeMillis(), pattern, true);
+	}
+
+	public static int getDiffDays(long ts) {
 		Calendar c = Calendar.getInstance();
 		clearCalendar(c, Calendar.HOUR_OF_DAY, Calendar.MINUTE, Calendar.SECOND, Calendar.MILLISECOND);
-		long firstOfDay = c.getTimeInMillis();
+		long today = c.getTimeInMillis();
 		c.setTimeInMillis(ts * 1000);
 		clearCalendar(c, Calendar.HOUR_OF_DAY, Calendar.MINUTE, Calendar.SECOND, Calendar.MILLISECOND);
-		return firstOfDay == c.getTimeInMillis();
+		return (int) ((today - c.getTimeInMillis()) / 1000 / 60 / 60 / 24);
 	}
 
 	private static void clearCalendar(Calendar c, int... fields) {
@@ -139,20 +143,20 @@ public class Utils {
 		}
 	}
 
-	public static void parseTextPlusAdd(ArrayList<String> list, String text) {
+	public static void str2list(String text, ArrayList<String> list) {
 		TextUtils.SimpleStringSplitter splitter = new TextUtils.SimpleStringSplitter('|');
 		splitter.setString(text);
 		while (splitter.hasNext())
 			list.add(splitter.next());
 	}
 
-	public static String checkTextValid(String text) {
+	public static String checkListSize(String text) {
 		ArrayList<String> list = new ArrayList<>();
-		parseTextPlusAdd(list, text);
+		str2list(text, list);
 		return "共" + list.size() + "条有效数据";
 	}
 
-	public static String checkLongValid(String text) {
+	public static String checkIsLongValid(String text) {
 		try {
 			long num = Long.parseLong(text);
 			return num >= 0L && num <= 9223372036685477529L ? "范围正确" : "范围有误";

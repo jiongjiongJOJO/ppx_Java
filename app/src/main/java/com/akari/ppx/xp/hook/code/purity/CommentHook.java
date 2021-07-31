@@ -19,8 +19,8 @@ public class CommentHook extends SuperbHook {
 	@Override
 	protected void onHook(ClassLoader cl) {
 		final ArrayList<String> keywords = new ArrayList<>(), users = new ArrayList<>();
-		Utils.parseTextPlusAdd(keywords, XSP.gets(REMOVE_COMMENT_KEYWORDS));
-		Utils.parseTextPlusAdd(users, XSP.gets(REMOVE_COMMENT_USERS));
+		Utils.str2list(XSP.gets(REMOVE_COMMENT_KEYWORDS), keywords);
+		Utils.str2list(XSP.gets(REMOVE_COMMENT_USERS), users);
 		hookMethod(REMOVE_COMMENT, "com.sup.android.mi.feed.repo.response.a", "a", ArrayList.class, new XC_MethodHook() {
 			@Override
 			protected void beforeHookedMethod(MethodHookParam param) {

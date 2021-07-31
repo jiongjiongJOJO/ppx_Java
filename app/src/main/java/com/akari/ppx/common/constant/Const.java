@@ -4,6 +4,7 @@ import com.akari.ppx.BuildConfig;
 
 public interface Const {
 	String BEST_FIT_VERSION = "3.5.5";
+
 	String TEST = "测试";
 	String NOW = "当前：";
 	String BANNED = "请卸载本模块后再启动皮皮虾";

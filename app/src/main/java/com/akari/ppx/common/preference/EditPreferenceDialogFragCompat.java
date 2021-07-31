@@ -88,7 +88,7 @@ public class EditPreferenceDialogFragCompat extends PreferenceDialogFragmentComp
 		}
 		if (pref.callChangeListener(value)) {
 			pref.setText(value);
-			pref.setSummary(pref instanceof NeutralEditPreference && ((NeutralEditPreference) pref).isArray() ? Utils.checkTextValid(value) : "".equals(value) ? "" : Const.NOW.concat(value));
+			pref.setSummary(pref instanceof TestEditPreference && ((TestEditPreference) pref).isArray() ? Utils.checkListSize(value) : "".equals(value) ? "" : Const.NOW.concat(value));
 		}
 	}
 }

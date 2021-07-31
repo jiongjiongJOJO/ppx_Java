@@ -35,8 +35,10 @@
     <string name="pref_unlock_video_comment_limit">pref_unlock_video_comment_limit</string>
     <string name="pref_prevent_mistaken_touch">pref_prevent_mistaken_touch</string>
     <string name="pref_show_female_tip">pref_show_female_tip</string>
+    <string name="pref_set_color_comment">pref_set_color_comment</string>
+    <string name="pref_set_color_type">pref_set_color_type</string>
     <string name="pref_show_exact_comment_time">pref_show_exact_comment_time</string>
-    <string name="pref_show_today_comment_time_format">pref_show_today_comment_time_format</string>
+    <string name="pref_show_recent_comment_time_format">pref_show_recent_comment_time_format</string>
     <string name="pref_show_exact_comment_time_format">pref_show_exact_comment_time_format</string>
     <string name="pref_keep_video_play_speed">pref_keep_video_play_speed</string>
     <string name="pref_set_video_play_speed">pref_set_video_play_speed</string>
@@ -104,11 +106,11 @@
     <string name="pref_simplify_share_summary">移除分享到QQ/QQ空间/微信/朋友圈</string>
     <string name="pref_use_new_feed_footer_style_title">帖子页脚使用新布局</string>
     <string name="pref_use_new_feed_footer_style_summary">分享、评论、赞、踩</string>
-    <string name="pref_remove_comment_title">屏蔽评论（以|分割，支持正则表达式）</string>
+    <string name="pref_remove_comment_title">屏蔽评论（正则表达式，以|分割）</string>
     <string name="pref_remove_comment_summary">依据关键词/用户名屏蔽评论</string>
     <string name="pref_remove_comment_keywords_title">关键词</string>
     <string name="pref_remove_comment_users_title">用户名</string>
-    <string name="pref_remove_item_title">屏蔽帖子（以|分割，支持正则表达式）</string>
+    <string name="pref_remove_item_title">屏蔽帖子（正则表达式，以|分割）</string>
     <string name="pref_remove_item_summary">依据关键词/用户名屏蔽帖子</string>
     <string name="pref_remove_item_keywords_title">关键词</string>
     <string name="pref_remove_item_users_title">用户名</string>
@@ -150,8 +152,12 @@
     <string name="pref_prevent_mistaken_touch_summary">左右划视频时不会触发快进快退</string>
     <string name="pref_show_female_tip_title">开启母虾提示</string>
     <string name="pref_show_female_tip_summary">评论区的母虾名字显示为粉色</string>
+    <string name="pref_set_color_comment_title">开启彩色评论</string>
+    <string name="pref_set_color_comment_summary">评论时添加显蓝/红色标签</string>
+    <string name="pref_set_color_type_title">评论颜色</string>
+    <string name="pref_set_color_type_summary">%s</string>
     <string name="pref_show_exact_comment_time_title">显示评论具体时间</string>
-    <string name="pref_show_today_comment_time_format_title">当天时间格式</string>
+    <string name="pref_show_recent_comment_time_format_title">近日时间格式（倒序，以|分割）</string>
     <string name="pref_show_exact_comment_time_format_title">之前时间格式</string>
     <string name="pref_keep_video_play_speed_title">长按视频保持加速</string>
     <string name="pref_keep_video_play_speed_summary">再次长按取消加速</string>
@@ -212,6 +218,19 @@
     <string name="pref_best_fit_version_summary">皮皮虾 %s</string>
     <string name="pref_source_code_title">项目源码</string>
     <string name="pref_source_code_summary">By Secack</string>
+
+    <string-array name="color_type">
+        <item>@string/color_type_0</item>
+        <item>@string/color_type_1</item>
+    </string-array>
+
+    <string name="color_type_0">蓝色</string>
+    <string name="color_type_1">红色</string>
+
+    <string-array name="color_type_values">
+        <item>1</item>
+        <item>3</item>
+    </string-array>
 
     <string-array name="play_speed">
         <item>@string/play_speed_0</item>

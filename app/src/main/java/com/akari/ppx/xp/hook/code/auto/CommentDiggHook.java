@@ -1,11 +1,11 @@
 package com.akari.ppx.xp.hook.code.auto;
 
-import com.akari.ppx.common.constant.Prefs;
 import com.akari.ppx.common.utils.XSP;
 import com.akari.ppx.xp.hook.code.SuperbHook;
 
 import de.robv.android.xposed.XC_MethodHook;
 
+import static com.akari.ppx.common.constant.Prefs.AUTO_COMMENT_DIGG;
 import static de.robv.android.xposed.XposedHelpers.callMethod;
 import static de.robv.android.xposed.XposedHelpers.findClass;
 import static de.robv.android.xposed.XposedHelpers.newInstance;
@@ -13,7 +13,7 @@ import static de.robv.android.xposed.XposedHelpers.newInstance;
 public class CommentDiggHook extends SuperbHook {
 	@Override
 	protected void onHook(ClassLoader cl) {
-		if (!XSP.get(Prefs.AUTO_COMMENT_DIGG)) return;
+		if (!XSP.get(AUTO_COMMENT_DIGG)) return;
 		hookMethod("com.sup.android.mi.publish.bean.CommentBean", "setRealCommentId", long.class, new XC_MethodHook() {
 			@Override
 			protected void beforeHookedMethod(MethodHookParam param) {

@@ -3,6 +3,7 @@ package com.akari.ppx.xp.hook.code;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.akari.ppx.BuildConfig;
 import com.akari.ppx.common.constant.Prefs;
@@ -22,6 +23,7 @@ import static de.robv.android.xposed.XposedHelpers.findAndHookConstructor;
 import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
 
 public class SuperbHook extends BaseHook {
+	private static final String TAG = SuperbHook.class.getName();
 	public static StringBuilder ex;
 	private static ClassLoader cl;
 
@@ -33,8 +35,8 @@ public class SuperbHook extends BaseHook {
 		hookMethod("com.sup.android.base.MainActivity", "onCreate", Bundle.class, new XC_MethodHook() {
 			@Override
 			protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-				for (Class<?> hookClass : getHookClasses((Context) param.thisObject))
-					((SuperbHook) hookClass.newInstance()).onHook(cl);
+				Context context = (Context) param.thisObject;
+				setNormalHooks(context);
 			}
 		});
 	}
@@ -66,6 +68,22 @@ public class SuperbHook extends BaseHook {
 	protected void hookConstructor(boolean isEnable, String className, Object... parameterTypesAndCallback) {
 		if (isEnable)
 			hookConstructor(className, parameterTypesAndCallback);
+	}
+
+	private void setNormalHooks(Context context) throws Throwable {
+		for (Class<?> hookClass : getHookClasses(context))
+			((SuperbHook) hookClass.newInstance()).onHook(cl);
+	}
+
+	private void setCompatHooks() {
+	}
+
+	private void getHookTemplate(Context context) {
+		StringBuilder sb = new StringBuilder("final List<SuperbHook> hookList = new ArrayList<>();\n");
+		for (Class<?> hookClass : getHookClasses(context))
+			sb.append("hookList.add(new ").append(hookClass.getName()).append("());").append("\n");
+		sb.append("for (SuperbHook hook : hookList)\nhook.onHook(cl);");
+		Log.e(TAG, sb.toString());
 	}
 
 	private List<Class<?>> getHookClasses(Context context) {

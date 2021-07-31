@@ -50,9 +50,8 @@ public class AudioHook extends SuperbHook {
 			@Override
 			protected void beforeHookedMethod(MethodHookParam param) {
 				try {
-					if (Enum.valueOf((Class) findClass("com.sup.android.i_sharecontroller.model.OptionAction$OptionActionType", cl), OptionActionType).equals(param.args[0])) {
+					if (Enum.valueOf((Class) findClass("com.sup.android.i_sharecontroller.model.OptionAction$OptionActionType", cl), OptionActionType).equals(param.args[0]))
 						callMethod(callMethod(param.thisObject, "getChildAt", 1), "setText", "保存音频");
-					}
 				} catch (Error ignored) {
 				}
 			}
@@ -67,9 +66,7 @@ public class AudioHook extends SuperbHook {
 					callMethod(videoDownLoadConfig, "setItemId", -1L);
 					savedVideo[0] = (Boolean) callMethod(videoDownloadHelper, "hasDownloadVideo", videoModel, null);
 					callMethod(videoDownloadHelper, "doDownload", param.args[0], videoModel, videoDownLoadConfig, null, true, null);
-				} else {
-					Utils.showSystemToastXP(cl, "视频才能提取音频哦~");
-				}
+				} else Utils.showSystemToastXP(cl, "视频才能提取音频哦~");
 				return null;
 			}
 		});

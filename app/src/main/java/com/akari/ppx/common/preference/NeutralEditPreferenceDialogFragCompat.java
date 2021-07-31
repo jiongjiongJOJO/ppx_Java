@@ -8,18 +8,20 @@ import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 
+import com.akari.ppx.common.utils.Utils;
+
 import java.lang.reflect.Field;
 
 public class NeutralEditPreferenceDialogFragCompat extends EditPreferenceDialogFragCompat {
 	private EditText editText;
-	private NeutralButton neutralButton;
+	private TestButton testButton;
 
-	public static EditPreferenceDialogFragCompat newInstance(String key, NeutralButton neutralButton) {
+	public static EditPreferenceDialogFragCompat newInstance(String key, TestButton testButton) {
 		NeutralEditPreferenceDialogFragCompat fragment = new NeutralEditPreferenceDialogFragCompat();
 		Bundle bundle = new Bundle(1);
 		bundle.putString("key", key);
 		fragment.setArguments(bundle);
-		fragment.neutralButton = neutralButton;
+		fragment.testButton = testButton;
 		return fragment;
 	}
 
@@ -27,9 +29,9 @@ public class NeutralEditPreferenceDialogFragCompat extends EditPreferenceDialogF
 	public @NonNull
 	Dialog onCreateDialog(Bundle savedInstanceState) {
 		androidx.appcompat.app.AlertDialog dialog = (androidx.appcompat.app.AlertDialog) super.onCreateDialog(savedInstanceState);
-		if (neutralButton == null)
-			neutralButton = new NeutralButton(null);
-		dialog.setButton(DialogInterface.BUTTON_NEUTRAL, neutralButton.getText(), this);
+		if (testButton == null)
+			testButton = new TestButton(null);
+		dialog.setButton(DialogInterface.BUTTON_NEUTRAL, testButton.getText(), this);
 		return dialog;
 	}
 
@@ -53,8 +55,7 @@ public class NeutralEditPreferenceDialogFragCompat extends EditPreferenceDialogF
 		super.onClick(dialog, which);
 		boolean isNeutral = which == DialogInterface.BUTTON_NEUTRAL;
 		setAutoDismiss(dialog, !isNeutral);
-		if (isNeutral) {
-			neutralButton.onClick(editText.getText().toString());
-		}
+		if (isNeutral)
+			Utils.showToast(getActivity(), testButton.handleText(editText.getText().toString()));
 	}
 }

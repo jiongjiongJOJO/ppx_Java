@@ -13,14 +13,14 @@ public class InfoUtils {
 	private final String point;
 
 	public InfoUtils() {
-		certifyType = XSP.gets(Prefs.CERTIFY_TYPE, "0");
-		certifyDesc = XSP.gets(Prefs.CERTIFY_DESC, "");
-		userName = XSP.gets(Prefs.USER_NAME, "");
-		description = XSP.gets(Prefs.DESCRIPTION, "");
-		likeCount = XSP.gets(Prefs.LIKE_COUNT, "");
-		followersCount = XSP.gets(Prefs.FOLLOWERS_COUNT, "");
-		followingCount = XSP.gets(Prefs.FOLLOWING_COUNT, "");
-		point = XSP.gets(Prefs.POINT, "");
+		certifyType = XSP.gets(Prefs.CERTIFY_TYPE);
+		certifyDesc = XSP.gets(Prefs.CERTIFY_DESC);
+		userName = XSP.gets(Prefs.USER_NAME);
+		description = XSP.gets(Prefs.DESCRIPTION);
+		likeCount = XSP.gets(Prefs.LIKE_COUNT);
+		followersCount = XSP.gets(Prefs.FOLLOWERS_COUNT);
+		followingCount = XSP.gets(Prefs.FOLLOWING_COUNT);
+		point = XSP.gets(Prefs.POINT);
 	}
 
 	public String getUserName() {

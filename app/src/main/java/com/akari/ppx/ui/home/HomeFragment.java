@@ -17,9 +17,9 @@ import com.akari.ppx.common.constant.Const;
 import com.akari.ppx.common.constant.Prefs;
 import com.akari.ppx.common.preference.EditPreference;
 import com.akari.ppx.common.preference.EditPreferenceDialogFragCompat;
-import com.akari.ppx.common.preference.NeutralButton;
-import com.akari.ppx.common.preference.NeutralEditPreference;
 import com.akari.ppx.common.preference.NeutralEditPreferenceDialogFragCompat;
+import com.akari.ppx.common.preference.TestButton;
+import com.akari.ppx.common.preference.TestEditPreference;
 import com.akari.ppx.common.utils.ModuleUtils;
 import com.akari.ppx.common.utils.Utils;
 import com.akari.ppx.ui.channel.ChannelActivity;
@@ -52,34 +52,31 @@ public class HomeFragment extends PreferenceFragmentCompat implements Preference
 	@Override
 	public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
 		addPreferencesFromResource(R.xml.settings);
-		NeutralButton.OnClickListener listener = text -> Utils.showToast(getActivity(), Utils.checkTextValid(text));
-		setSummaryWithButton(Prefs.REMOVE_COMMENT_KEYWORDS, listener, true);
-		setSummaryWithButton(Prefs.REMOVE_COMMENT_USERS, listener, true);
-		setSummaryWithButton(Prefs.REMOVE_ITEM_KEYWORDS, listener, true);
-		setSummaryWithButton(Prefs.REMOVE_ITEM_USERS, listener, true);
-		findPreference(Prefs.DIY_CATEGORY_LIST).setOnPreferenceChangeListener(this);
-		findPreference(Prefs.REMOVE_BOTTOM_VIEW).setOnPreferenceChangeListener(this);
-		findPreference(Prefs.DONATE).setOnPreferenceClickListener(this);
 		isModuleEnabled = ModuleUtils.isModuleEnabled_Xposed() || ModuleUtils.isModuleEnabled_Taichi(context);
 		findPreference(Prefs.JOIN_QQ_GROUP).setVisible(isModuleEnabled);
-		findPreference(Prefs.JOIN_QQ_GROUP).setOnPreferenceClickListener(this);
+		findPreference(Prefs.DIY_CATEGORY_LIST).setOnPreferenceChangeListener(this);
+		findPreference(Prefs.REMOVE_BOTTOM_VIEW).setOnPreferenceChangeListener(this);
 		findPreference(Prefs.HIDE_LAUNCHER_ICON).setOnPreferenceChangeListener(this);
+		findPreference(Prefs.DONATE).setOnPreferenceClickListener(this);
+		findPreference(Prefs.JOIN_QQ_GROUP).setOnPreferenceClickListener(this);
 		findPreference(Prefs.SOURCE_CODE).setOnPreferenceClickListener(this);
 		Preference prefVer = findPreference(Prefs.BEST_FIT_VERSION);
 		prefVer.setSummary(String.format(prefVer.getSummary().toString(), Const.BEST_FIT_VERSION));
-		listener = text -> Utils.showToast(getActivity(), Utils.ts2date(System.currentTimeMillis(), text, true));
-		setSummaryWithButton(Prefs.TODAY_COMMENT_TIME_FORMAT, listener, false);
-		setSummaryWithButton(Prefs.EXACT_COMMENT_TIME_FORMAT, listener, false);
+		setSummaryT(Prefs.REMOVE_COMMENT_KEYWORDS, Utils::checkListSize, true);
+		setSummaryT(Prefs.REMOVE_COMMENT_USERS, Utils::checkListSize, true);
+		setSummaryT(Prefs.REMOVE_ITEM_KEYWORDS, Utils::checkListSize, true);
+		setSummaryT(Prefs.REMOVE_ITEM_USERS, Utils::checkListSize, true);
+		setSummaryT(Prefs.RECENT_COMMENT_TIME_FORMAT, Utils::checkListSize, true);
+		setSummaryT(Prefs.EXACT_COMMENT_TIME_FORMAT, Utils::getNowDate, false);
 		setSummary(Prefs.AUTO_BROWSE_FREQUENCY);
 		setSummary(Prefs.AUTO_COMMENT_TEXT);
 		setSummary(Prefs.USER_NAME);
 		setSummary(Prefs.CERTIFY_DESC);
 		setSummary(Prefs.DESCRIPTION);
-		listener = text -> Utils.showToast(getActivity(), Utils.checkLongValid(text));
-		setSummaryWithButton(Prefs.LIKE_COUNT, listener, false);
-		setSummaryWithButton(Prefs.FOLLOWERS_COUNT, listener, false);
-		setSummaryWithButton(Prefs.FOLLOWING_COUNT, listener, false);
-		setSummaryWithButton(Prefs.POINT, listener, false);
+		setSummaryT(Prefs.LIKE_COUNT, Utils::checkIsLongValid, false);
+		setSummaryT(Prefs.FOLLOWERS_COUNT, Utils::checkIsLongValid, false);
+		setSummaryT(Prefs.FOLLOWING_COUNT, Utils::checkIsLongValid, false);
+		setSummaryT(Prefs.POINT, Utils::checkIsLongValid, false);
 	}
 
 	@Override
@@ -127,8 +124,8 @@ public class HomeFragment extends PreferenceFragmentCompat implements Preference
 		if (preference instanceof EditPreference) {
 			String key = preference.getKey();
 			DialogFragment dialogFragment;
-			if (preference instanceof NeutralEditPreference) {
-				dialogFragment = NeutralEditPreferenceDialogFragCompat.newInstance(key, ((NeutralEditPreference) preference).getNeutralButton());
+			if (preference instanceof TestEditPreference) {
+				dialogFragment = NeutralEditPreferenceDialogFragCompat.newInstance(key, ((TestEditPreference) preference).getTestButton());
 			} else dialogFragment = EditPreferenceDialogFragCompat.newInstance(key);
 			dialogFragment.setTargetFragment(this, 0);
 			dialogFragment.show(context.getSupportFragmentManager(), "android.support.v7.preference.PreferenceFragment.DIALOG");
@@ -146,14 +143,14 @@ public class HomeFragment extends PreferenceFragmentCompat implements Preference
 	private void setSummary(Prefs prefs) throws NullPointerException {
 		EditPreference pref = (EditPreference) findPreference(prefs);
 		String text = pref.getText();
-		pref.setSummary(pref instanceof NeutralEditPreference && ((NeutralEditPreference) pref).isArray() ? Utils.checkTextValid(text) : "".equals(text) ? "" : Const.NOW.concat(text));
+		pref.setSummary(pref instanceof TestEditPreference && ((TestEditPreference) pref).isArray() ? Utils.checkListSize(text) : "".equals(text) ? "" : Const.NOW.concat(text));
 	}
 
-	private void setSummaryWithButton(Prefs prefs, NeutralButton.OnClickListener onClickListener, boolean isArray) {
+	private void setSummaryT(Prefs prefs, TestButton.Listener listener, boolean isArray) {
 		EditPreference pref = (EditPreference) findPreference(prefs);
-		if (pref instanceof NeutralEditPreference) {
-			((NeutralEditPreference) pref).setIsArray(isArray);
-			((NeutralEditPreference) pref).setNeutralButton(new NeutralButton(onClickListener));
+		if (pref instanceof TestEditPreference) {
+			((TestEditPreference) pref).setIsArray(isArray);
+			((TestEditPreference) pref).setTestButton(new TestButton(listener));
 		}
 		setSummary(prefs);
 	}

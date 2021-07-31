@@ -5,6 +5,9 @@ buildscript {
     repositories {
         jcenter()
         google()
+        maven {
+            url "https://jitpack.io"
+        }
     }
     dependencies {
         classpath 'com.tencent.mm:AndResGuard-gradle-plugin:1.2.21'
@@ -18,8 +21,8 @@ android {
         applicationId "com.akari.ppx"
         minSdkVersion 21
         targetSdkVersion 27
-        versionCode 181
-        versionName '1.8.1'
+        versionCode 182
+        versionName '1.8.2'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -42,7 +45,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "androidx.preference:preference:1.1.1"
-    implementation "androidx.constraintlayout:constraintlayout:2.0.4"
+    implementation "androidx.constraintlayout:constraintlayout:2.1.0"
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation "com.jaredrummler:cyanea:1.0.2"
     implementation 'com.google.code.gson:gson:2.8.6'

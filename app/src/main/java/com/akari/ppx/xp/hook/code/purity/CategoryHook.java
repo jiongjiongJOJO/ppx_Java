@@ -37,11 +37,10 @@ public class CategoryHook extends SuperbHook {
 			@Override
 			protected void beforeHookedMethod(MethodHookParam param) {
 				List beforeList = (List) param.args[0], afterList = new ArrayList();
-				//beforeList.add(createChannel("Test", "https://baidu.com", "https://baidu.com/channel.jpg", 174, 116));
 				List<String> nameList = new ArrayList<>();
 				for (Object item : beforeList) {
 					nameList.add((String) callMethod(item, "getListName"));
-					if (!isNewCategory && (int) callMethod(item, "getParentChannel") == CATEGORY_LIST_TYPE_NEW[3])
+					if (isNewCategory && (int) callMethod(item, "getParentChannel") == CATEGORY_LIST_TYPE_NEW[3])
 						afterList.add(item);
 				}
 				if (targetList == null)
@@ -60,6 +59,7 @@ public class CategoryHook extends SuperbHook {
 				param.args[0] = afterList;
 			}
 
+			@Deprecated
 			private Object createChannel(String channelName, String webUrl, String imageUrl, int width, int height) {
 				Object categoryItem = newInstance(findClass("com.sup.superb.feedui.bean.CategoryItem", cl));
 				callMethod(categoryItem, "setListName", channelName);
@@ -84,7 +84,6 @@ public class CategoryHook extends SuperbHook {
 				callMethod(categoryItem, "setCategoryStyle", categoryItemStyle);
 				return categoryItem;
 			}
-
 		});
 		hookMethod("com.sup.superb.feedui.bean.CategoryListModel", "getDefaultChannel", new XC_MethodReplacement() {
 			@Override

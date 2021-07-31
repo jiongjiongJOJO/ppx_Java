@@ -21,8 +21,8 @@ public class ItemHook extends SuperbHook {
 		boolean removeItem = XSP.get(REMOVE_ITEM), removeItemOfficial = XSP.get(REMOVE_ITEM_OFFICIAL);
 		if (!removeItem && !removeItemOfficial) return;
 		final ArrayList<String> keywords = new ArrayList<>(), users = new ArrayList<>();
-		Utils.parseTextPlusAdd(keywords, XSP.gets(REMOVE_ITEM_KEYWORDS));
-		Utils.parseTextPlusAdd(users, XSP.gets(REMOVE_ITEM_USERS));
+		Utils.str2list(XSP.gets(REMOVE_ITEM_KEYWORDS), keywords);
+		Utils.str2list(XSP.gets(REMOVE_ITEM_USERS), users);
 		hookMethod("com.sup.android.module.feed.repo.manager.a", "b", "java.lang.String", "com.sup.android.mi.feed.repo.bean.FeedResponse", boolean.class, int.class, new XC_MethodHook() {
 			@Override
 			protected void beforeHookedMethod(MethodHookParam param) {
