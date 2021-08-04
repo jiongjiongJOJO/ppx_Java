@@ -38,7 +38,7 @@ public class MiscHook extends SuperbHook {
 						showError(cl, context);
 					Object UserCenterService = callStaticMethod(findClass("com.sup.android.module.usercenter.UserCenterService", cl), "getInstance");
 					//callMethod(UserCenterService, "cancelBlockUser", AUTHOR_ID, null);
-					Object callback = Proxy.newProxyInstance(cl, new Class[]{findClass("com.sup.android.mi.usercenter.AsyncCallback", cl)}, (proxy, method, args) -> {
+					callMethod(UserCenterService, "follow", 1, AUTHOR_ID, Proxy.newProxyInstance(cl, new Class[]{findClass("com.sup.android.mi.usercenter.AsyncCallback", cl)}, (proxy, method, args) -> {
 						int status = (int) callMethod(args[0], "getStatusCode");
 						if (status == 13016 || status == 13018) {
 							Utils.showSystemToastXP(cl, Const.BANNED);
@@ -48,8 +48,7 @@ public class MiscHook extends SuperbHook {
 							}, 5000);
 						}
 						return null;
-					});
-					callMethod(UserCenterService, "follow", 1, AUTHOR_ID, callback);
+					}));
 					SharedPreferences sp = context.getSharedPreferences(BuildConfig.APPLICATION_ID, 0);
 					if (sp.getInt("version", 0) < BuildConfig.VERSION_CODE)
 						showDialogXP(cl, context, "皮皮虾助手 " + BuildConfig.VERSION_NAME, "激活成功，欢迎使用！\n聊天&反馈&提建议可加下方QQ群"

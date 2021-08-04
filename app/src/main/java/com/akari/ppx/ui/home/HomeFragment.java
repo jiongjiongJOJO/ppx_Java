@@ -55,7 +55,10 @@ public class HomeFragment extends PreferenceFragmentCompat implements Preference
 		isModuleEnabled = ModuleUtils.isModuleEnabled_Xposed() || ModuleUtils.isModuleEnabled_Taichi(context);
 		findPreference(Prefs.JOIN_QQ_GROUP).setVisible(isModuleEnabled);
 		findPreference(Prefs.DIY_CATEGORY_LIST).setOnPreferenceChangeListener(this);
+		findPreference(Prefs.AUTO_DIGG_ENABLE).setOnPreferenceChangeListener(this);
+		findPreference(Prefs.AUTO_DISS_ENABLE).setOnPreferenceChangeListener(this);
 		findPreference(Prefs.REMOVE_BOTTOM_VIEW).setOnPreferenceChangeListener(this);
+		findPreference(Prefs.REMOVE_PUBLISH_BUTTON).setOnPreferenceChangeListener(this);
 		findPreference(Prefs.HIDE_LAUNCHER_ICON).setOnPreferenceChangeListener(this);
 		findPreference(Prefs.DONATE).setOnPreferenceClickListener(this);
 		findPreference(Prefs.JOIN_QQ_GROUP).setOnPreferenceClickListener(this);
@@ -105,9 +108,24 @@ public class HomeFragment extends PreferenceFragmentCompat implements Preference
 				if (checked)
 					context.startActivity(new Intent(context, ChannelActivity.class));
 				return true;
+			case AUTO_DIGG_ENABLE: {
+				if (checked)
+					((SwitchPreference) findPreference(Prefs.AUTO_DISS_ENABLE)).setChecked(false);
+				return true;
+			}
+			case AUTO_DISS_ENABLE: {
+				if (checked)
+					((SwitchPreference) findPreference(Prefs.AUTO_DIGG_ENABLE)).setChecked(false);
+				return true;
+			}
 			case REMOVE_BOTTOM_VIEW: {
 				if (checked)
 					((SwitchPreference) findPreference(Prefs.REMOVE_PUBLISH_BUTTON)).setChecked(false);
+				return true;
+			}
+			case REMOVE_PUBLISH_BUTTON: {
+				if (checked)
+					((SwitchPreference) findPreference(Prefs.REMOVE_BOTTOM_VIEW)).setChecked(false);
 				return true;
 			}
 			case HIDE_LAUNCHER_ICON: {

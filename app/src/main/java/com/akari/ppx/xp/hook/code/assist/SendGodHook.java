@@ -20,7 +20,7 @@ public class SendGodHook extends SuperbHook {
 	@Override
 	protected void onHook(ClassLoader cl) {
 		final boolean autoSendGod = XSP.get(AUTO_SEND_GOD_ENABLE);
-		final int timeLimit = XSP.getI(AUTO_SEND_GOD_TIME_LIMIT, 21600);
+		final int timeLimit = XSP.getI(AUTO_SEND_GOD_TIME_LIMIT);
 		hookMethod(UNLOCK_SEND_GOD, "com.sup.android.mi.feed.repo.bean.comment.Comment", "getSendGodStatus", new XC_MethodHook() {
 			@Override
 			protected void afterHookedMethod(MethodHookParam param) {

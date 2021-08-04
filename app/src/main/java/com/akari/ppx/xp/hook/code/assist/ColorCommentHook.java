@@ -16,11 +16,13 @@ public class ColorCommentHook extends SuperbHook {
 	@Override
 	protected void onHook(ClassLoader cl) {
 		if (!XSP.get(SET_COLOR_COMMENT)) return;
-		final int colorType = XSP.getI(SET_COLOR_TYPE, 3);
+		final int colorType = XSP.getI(SET_COLOR_TYPE);
 		hookMethod("com.sup.android.module.publish.publish.b", "f", "com.sup.android.mi.publish.bean.PublishBean", new XC_MethodHook() {
 			@Override
 			protected void beforeHookedMethod(MethodHookParam param) {
-				setObjectField(param.args[0], "text", String.format(Locale.CHINA, "[b type=%d id＝@]%s[/b]", colorType, callMethod(param.args[0], "getText")));
+				String text = (String) callMethod(param.args[0], "getText");
+				if (!text.contains("[/b]"))
+					setObjectField(param.args[0], "text", String.format(Locale.CHINA, "[b type=%d id＝@]%s[/b]", colorType, text));
 			}
 		});
 	}

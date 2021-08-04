@@ -87,6 +87,11 @@
             android:title="@string/pref_remove_item_official_title" />
         <SwitchPreference
             android:defaultValue="false"
+            android:key="@string/pref_remove_item_promotion"
+            android:summary="@string/pref_remove_item_promotion_summary"
+            android:title="@string/pref_remove_item_promotion_title" />
+        <SwitchPreference
+            android:defaultValue="false"
             android:key="@string/pref_remove_avatar_decoration"
             android:summary="@string/pref_remove_avatar_decoration_summary"
             android:title="@string/pref_remove_avatar_decoration_title" />
@@ -170,9 +175,35 @@
             android:title="@string/pref_prevent_mistaken_touch_title" />
         <SwitchPreference
             android:defaultValue="false"
+            android:key="@string/pref_query_danmaku_sender"
+            android:summary="@string/pref_query_danmaku_sender_summary"
+            android:title="@string/pref_query_danmaku_sender_title" />
+        <SwitchPreference
+            android:defaultValue="false"
             android:key="@string/pref_show_female_tip"
             android:summary="@string/pref_show_female_tip_summary"
             android:title="@string/pref_show_female_tip_title" />
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/pref_modify_interaction_style"
+            android:summary="@string/pref_modify_interaction_style_summary"
+            android:title="@string/pref_modify_interaction_style_title" />
+        <ListPreference
+            android:defaultValue="10"
+            android:dependency="@string/pref_modify_interaction_style"
+            android:entries='@array/digg_style'
+            android:entryValues="@array/digg_style_values"
+            android:key="@string/pref_digg_style"
+            android:summary="@string/pref_digg_style_summary"
+            android:title="@string/pref_digg_style_title" />
+        <ListPreference
+            android:defaultValue="10"
+            android:dependency="@string/pref_modify_interaction_style"
+            android:entries='@array/diss_style'
+            android:entryValues="@array/diss_style_values"
+            android:key="@string/pref_diss_style"
+            android:summary="@string/pref_diss_style_summary"
+            android:title="@string/pref_diss_style_title" />
         <SwitchPreference
             android:defaultValue="false"
             android:key="@string/pref_set_color_comment"
@@ -237,19 +268,21 @@
             android:key="@string/pref_auto_digg_enable"
             android:summary="@string/pref_auto_digg_enable_summary"
             android:title="@string/pref_auto_digg_enable_title" />
-        <ListPreference
-            android:defaultValue="10"
-            android:dependency="@string/pref_auto_digg_enable"
-            android:entries='@array/digg_style'
-            android:entryValues="@array/digg_style_values"
-            android:key="@string/pref_digg_style"
-            android:summary="@string/pref_digg_style_summary"
-            android:title="@string/pref_digg_style_title" />
         <SwitchPreference
             android:defaultValue="true"
             android:dependency="@string/pref_auto_digg_enable"
             android:key="@string/pref_auto_digg_pause"
             android:title="@string/pref_auto_digg_pause_title" />
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/pref_auto_diss_enable"
+            android:summary="@string/pref_auto_diss_enable_summary"
+            android:title="@string/pref_auto_diss_enable_title" />
+        <SwitchPreference
+            android:defaultValue="true"
+            android:dependency="@string/pref_auto_diss_enable"
+            android:key="@string/pref_auto_diss_pause"
+            android:title="@string/pref_auto_diss_pause_title" />
         <SwitchPreference
             android:defaultValue="false"
             android:key="@string/pref_auto_comment_enable"
@@ -306,12 +339,10 @@
     <PreferenceCategory android:title="@string/pref_avoid_burning_screen_title">
         <SwitchPreference
             android:defaultValue="false"
-            android:disableDependentsState="true"
             android:key="@string/pref_remove_bottom_view"
             android:title="@string/pref_remove_bottom_view_title" />
         <SwitchPreference
             android:defaultValue="false"
-            android:dependency="@string/pref_remove_bottom_view"
             android:key="@string/pref_remove_publish_button"
             android:title="@string/pref_remove_publish_button_title" />
         <SwitchPreference

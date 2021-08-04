@@ -1,8 +1,11 @@
 package com.akari.ppx.xp.hook.code.auto;
 
+import android.util.Log;
+
 import com.akari.ppx.common.utils.XSP;
 import com.akari.ppx.xp.hook.code.SuperbHook;
 
+import java.lang.reflect.Proxy;
 import java.util.ArrayList;
 
 import de.robv.android.xposed.XC_MethodHook;
@@ -15,7 +18,10 @@ import static com.akari.ppx.common.constant.Prefs.AUTO_COMMENT_PAUSE;
 import static com.akari.ppx.common.constant.Prefs.AUTO_COMMENT_TEXT;
 import static com.akari.ppx.common.constant.Prefs.AUTO_DIGG_ENABLE;
 import static com.akari.ppx.common.constant.Prefs.AUTO_DIGG_PAUSE;
+import static com.akari.ppx.common.constant.Prefs.AUTO_DISS_ENABLE;
+import static com.akari.ppx.common.constant.Prefs.AUTO_DISS_PAUSE;
 import static com.akari.ppx.common.constant.Prefs.DIGG_STYLE;
+import static com.akari.ppx.common.constant.Prefs.DISS_STYLE;
 import static de.robv.android.xposed.XposedHelpers.callMethod;
 import static de.robv.android.xposed.XposedHelpers.callStaticMethod;
 import static de.robv.android.xposed.XposedHelpers.findClass;
@@ -23,13 +29,13 @@ import static de.robv.android.xposed.XposedHelpers.getObjectField;
 import static de.robv.android.xposed.XposedHelpers.getStaticObjectField;
 import static de.robv.android.xposed.XposedHelpers.newInstance;
 
-public class DiggPlusCommentHook extends SuperbHook {
+public class DiggDissCommentHook extends SuperbHook {
 	@Override
 	protected void onHook(ClassLoader cl) {
-		final boolean autoBrowse = XSP.get(AUTO_BROWSE_ENABLE), autoBrowseVideoMode = XSP.get(AUTO_BROWSE_VIDEO_MODE), autoDigg = XSP.get(AUTO_DIGG_ENABLE), autoComment = XSP.get(AUTO_COMMENT_ENABLE);
-		final int browseFrequency = XSP.getI(AUTO_BROWSE_FREQUENCY, 2000), diggStyle = XSP.getI(DIGG_STYLE, 10);
+		final boolean autoBrowse = XSP.get(AUTO_BROWSE_ENABLE), autoBrowseVideoMode = XSP.get(AUTO_BROWSE_VIDEO_MODE), autoDigg = XSP.get(AUTO_DIGG_ENABLE), autoDiss = XSP.get(AUTO_DISS_ENABLE), autoDissPause = XSP.get(AUTO_DISS_PAUSE), autoComment = XSP.get(AUTO_COMMENT_ENABLE);
+		final int browseFrequency = XSP.getI(AUTO_BROWSE_FREQUENCY), diggStyle = XSP.getI(DIGG_STYLE), dissStyle = XSP.getI(DISS_STYLE);
 		final String commentText = XSP.gets(AUTO_COMMENT_TEXT);
-		if (autoBrowse || autoDigg || autoComment)
+		if (autoBrowse || autoDigg || autoDiss || autoComment)
 			hookMethod("com.sup.android.detail.ui.DetailPagerFragment", "onPageSelected", int.class, new XC_MethodHook() {
 				@Override
 				protected void afterHookedMethod(MethodHookParam param) {
@@ -47,6 +53,14 @@ public class DiggPlusCommentHook extends SuperbHook {
 							callMethod(newInstance(findClass("com.sup.android.detail.util.o", cl)), "a",
 									callMethod(feedCell, "getCellType"), callMethod(feedCell, "getCellId"), true, diggStyle, 2);
 						}
+						if (autoDiss) {
+							callMethod(newInstance(findClass("com.sup.superb.m_feedui_common.util.g", cl)), "b",
+									callMethod(feedCell, "getCellType"), callMethod(feedCell, "getCellId"), true, dissStyle, Proxy.newProxyInstance(cl, new Class[]{findClass("com.sup.android.mi.usercenter.AsyncCallback", cl)}, (proxy, method, args) -> {
+										if (autoDissPause && (int) callMethod(args[0], "getStatusCode") != 0)
+											BrowseHook.setAutoBrowse(false);
+										return null;
+									}));
+						}
 						if (autoComment && !"".equals(commentText)) {
 							Object userCenter = callStaticMethod(findClass("com.bytedance.news.common.service.manager.ServiceManager", cl), "getService"
 									, findClass("com.sup.android.mi.usercenter.IUserCenterService", cl));
@@ -63,6 +77,7 @@ public class DiggPlusCommentHook extends SuperbHook {
 											, "cell_detail", "input", false, 0, false, false, -1L));
 						}
 					} catch (Exception ignored) {
+						Log.e("111111", ignored.getMessage());
 					}
 				}
 			});

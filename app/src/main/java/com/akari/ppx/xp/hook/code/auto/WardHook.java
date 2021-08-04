@@ -18,7 +18,7 @@ public class WardHook extends SuperbHook {
 	@Override
 	protected void onHook(ClassLoader cl) {
 		if (!XSP.get(AUTO_WARD_ENABLE)) return;
-		final int condition = XSP.getI(AUTO_WARD_CONDITION, 0);
+		final int condition = XSP.getI(AUTO_WARD_CONDITION);
 		Ward ward = new Ward(condition, cl);
 		switch (condition) {
 			case 0:

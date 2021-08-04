@@ -15,7 +15,7 @@ import static com.akari.ppx.common.constant.Prefs.SET_VIDEO_PLAY_SPEED;
 public class PlaySpeedHook extends SuperbHook {
 	@Override
 	protected void onHook(ClassLoader cl) {
-		final float playSpeed = XSP.getF(SET_VIDEO_PLAY_SPEED, 2.0f);
+		final float playSpeed = XSP.getF(SET_VIDEO_PLAY_SPEED);
 		final boolean[] entered = new boolean[1];
 		if (playSpeed == 2.0f) return;
 		hookMethod("com.sup.android.supvideoview.videoview.SupVideoView", "setPlaySpeed", float.class, new XC_MethodHook() {

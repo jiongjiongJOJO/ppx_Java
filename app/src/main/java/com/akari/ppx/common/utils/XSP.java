@@ -15,19 +15,15 @@ public class XSP {
 		return xsp.getBoolean(prefs.getKey(), false);
 	}
 
-	public static String gets(Prefs prefs, String defValue) {
-		return xsp.getString(prefs.getKey(), defValue);
-	}
-
 	public static String gets(Prefs prefs) {
-		return gets(prefs, "");
+		return xsp.getString(prefs.getKey(), "");
 	}
 
-	public static int getI(Prefs prefs, int defValue) {
-		return Integer.parseInt(gets(prefs, String.valueOf(defValue)));
+	public static int getI(Prefs prefs) {
+		return Integer.parseInt(gets(prefs));
 	}
 
-	public static float getF(Prefs prefs, float defValue) {
-		return Float.parseFloat(gets(prefs, String.valueOf(defValue)));
+	public static float getF(Prefs prefs) {
+		return Float.parseFloat(gets(prefs));
 	}
 }

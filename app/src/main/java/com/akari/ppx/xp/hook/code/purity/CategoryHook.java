@@ -32,7 +32,8 @@ public class CategoryHook extends SuperbHook {
 		if (!XSP.get(DIY_CATEGORY_LIST)) return;
 		boolean isNewCategory = XSP.get(USE_NEW_CATEGORY_LIST);
 		final List<ChannelEntity> targetList = getDataList(XSP.gets(isNewCategory ? MY_CHANNEL_NEW : MY_CHANNEL));
-		final String defaultChannel = XSP.gets(isNewCategory ? DEFAULT_CHANNEL_NEW : DEFAULT_CHANNEL, "推荐");
+		String defaultChannel = XSP.gets(isNewCategory ? DEFAULT_CHANNEL_NEW : DEFAULT_CHANNEL);
+		defaultChannel = "".equals(defaultChannel) ? "推荐" : defaultChannel;
 		hookMethod("com.sup.superb.feedui.bean.CategoryListModel", "setCategoryItems", List.class, new XC_MethodHook() {
 			@Override
 			protected void beforeHookedMethod(MethodHookParam param) {
@@ -85,13 +86,14 @@ public class CategoryHook extends SuperbHook {
 				return categoryItem;
 			}
 		});
+		String finalDefaultChannel = defaultChannel;
 		hookMethod("com.sup.superb.feedui.bean.CategoryListModel", "getDefaultChannel", new XC_MethodReplacement() {
 			@Override
 			protected Object replaceHookedMethod(MethodHookParam param) {
 				int i = -1;
 				for (String name : isNewCategory ? CATEGORY_LIST_NAME_NEW : CATEGORY_LIST_NAME) {
 					i++;
-					if (name.contains(defaultChannel))
+					if (name.contains(finalDefaultChannel))
 						break;
 				}
 				return CATEGORY_LIST_TYPE[i];

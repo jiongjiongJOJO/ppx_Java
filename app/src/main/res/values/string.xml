@@ -18,6 +18,7 @@
     <string name="pref_remove_item_keywords">pref_remove_item_keywords</string>
     <string name="pref_remove_item_users">pref_remove_item_users</string>
     <string name="pref_remove_item_official">pref_remove_item_official</string>
+    <string name="pref_remove_item_promotion">pref_remove_item_promotion</string>
     <string name="pref_remove_avatar_decoration">pref_remove_avatar_decoration</string>
     <string name="pref_disable_history_items">pref_disable_history_items</string>
     <string name="pref_use_new_category_list">pref_use_new_category_list</string>
@@ -34,7 +35,11 @@
     <string name="pref_unlock_send_god_limit">pref_unlock_send_god_limit</string>
     <string name="pref_unlock_video_comment_limit">pref_unlock_video_comment_limit</string>
     <string name="pref_prevent_mistaken_touch">pref_prevent_mistaken_touch</string>
+    <string name="pref_query_danmaku_sender">pref_query_danmaku_sender</string>
     <string name="pref_show_female_tip">pref_show_female_tip</string>
+    <string name="pref_modify_interaction_style">pref_modify_interaction_style</string>
+    <string name="pref_digg_style">pref_digg_style</string>
+    <string name="pref_diss_style">pref_diss_style</string>
     <string name="pref_set_color_comment">pref_set_color_comment</string>
     <string name="pref_set_color_type">pref_set_color_type</string>
     <string name="pref_show_exact_comment_time">pref_show_exact_comment_time</string>
@@ -46,8 +51,9 @@
     <string name="pref_auto_browse_frequency">pref_auto_browse_frequency</string>
     <string name="pref_auto_browse_video_mode">pref_auto_browse_video_mode</string>
     <string name="pref_auto_digg_enable">pref_auto_digg_enable</string>
-    <string name="pref_digg_style">pref_digg_style</string>
     <string name="pref_auto_digg_pause">pref_auto_digg_pause</string>
+    <string name="pref_auto_diss_enable">pref_auto_diss_enable</string>
+    <string name="pref_auto_diss_pause">pref_auto_diss_pause</string>
     <string name="pref_auto_comment_enable">pref_auto_comment_enable</string>
     <string name="pref_auto_comment_digg_enable">pref_auto_comment_digg_enable</string>
     <string name="pref_auto_comment_text">pref_auto_comment_text</string>
@@ -115,13 +121,15 @@
     <string name="pref_remove_item_keywords_title">关键词</string>
     <string name="pref_remove_item_users_title">用户名</string>
     <string name="pref_remove_item_official_title">屏蔽官方账号帖子</string>
-    <string name="pref_remove_item_official_summary">支持严惩！（懂得都懂</string>
+    <string name="pref_remove_item_official_summary">支持严惩！</string>
     <string name="pref_remove_avatar_decoration_title">屏蔽头像挂饰</string>
+    <string name="pref_remove_item_promotion_summary">看了又不买</string>
+    <string name="pref_remove_item_promotion_title">屏蔽带货帖子</string>
     <string name="pref_remove_avatar_decoration_summary">移除活动挂饰</string>
     <string name="pref_disable_history_items_title">关闭浏览历史记录</string>
     <string name="pref_disable_history_items_summary">不再记录浏览历史</string>
     <string name="pref_use_new_category_list_title">使用父子频道</string>
-    <string name="pref_use_new_category_list_summary">影响管理频道</string>
+    <string name="pref_use_new_category_list_summary">同时影响管理频道</string>
     <string name="pref_diy_category_list_title">管理频道</string>
     <string name="pref_diy_category_list_summary">自定义头部版块</string>
 
@@ -150,8 +158,16 @@
     <string name="pref_unlock_video_comment_limit_summary">楼中楼可以评论视频</string>
     <string name="pref_prevent_mistaken_touch_title">划视频防误触</string>
     <string name="pref_prevent_mistaken_touch_summary">左右划视频时不会触发快进快退</string>
+    <string name="pref_query_danmaku_sender_title">查询弹幕发送人</string>
+    <string name="pref_query_danmaku_sender_summary">双击弹幕跳转其主页</string>
     <string name="pref_show_female_tip_title">开启母虾提示</string>
     <string name="pref_show_female_tip_summary">评论区的母虾名字显示为粉色</string>
+    <string name="pref_modify_interaction_style_title">修改默认交互样式</string>
+    <string name="pref_digg_style_title">点赞样式</string>
+    <string name="pref_digg_style_summary">%s</string>
+    <string name="pref_diss_style_title">点踩样式</string>
+    <string name="pref_diss_style_summary">%s</string>
+    <string name="pref_modify_interaction_style_summary">同时影响自动点赞/自动点踩</string>
     <string name="pref_set_color_comment_title">开启彩色评论</string>
     <string name="pref_set_color_comment_summary">评论时添加显蓝/红色标签</string>
     <string name="pref_set_color_type_title">评论颜色</string>
@@ -170,9 +186,10 @@
     <string name="pref_auto_browse_video_mode_title">视频播放完再切换</string>
     <string name="pref_auto_digg_enable_title">自动点赞</string>
     <string name="pref_auto_digg_enable_summary">自动切换时赞成功不显示（实际已赞）</string>
-    <string name="pref_digg_style_title">点赞样式</string>
-    <string name="pref_digg_style_summary">%s</string>
     <string name="pref_auto_digg_pause_title">点赞频繁后暂停自动切换</string>
+    <string name="pref_auto_diss_enable_title">自动点踩</string>
+    <string name="pref_auto_diss_enable_summary">自动切换时踩成功不显示（实际已踩）</string>
+    <string name="pref_auto_diss_pause_title">点踩频繁后暂停自动切换</string>
     <string name="pref_auto_comment_enable_title">自动评论</string>
     <string name="pref_auto_comment_text_title">评论内容</string>
     <string name="pref_auto_comment_pause_title">评论频繁后暂停自动切换</string>
@@ -209,7 +226,7 @@
 
     <string name="pref_about_title">关于</string>
     <string name="pref_donate_by_alipay_title">捐赠支持</string>
-    <string name="pref_donate_by_alipay_summary">加油，大哥哥！</string>
+    <string name="pref_donate_by_alipay_summary">每一笔捐赠都是对辛勤付出的肯定</string>
     <string name="pref_join_qq_group_title">聊天&amp;反馈&amp;提建议</string>
     <string name="pref_join_qq_group_summary">QQ群：950678609</string>
     <string name="pref_hide_launcher_icon_title">隐藏图标</string>
@@ -293,6 +310,26 @@
         <item>20</item>
         <item>30</item>
     </string-array>
+
+    <string-array name="diss_style">
+        <item>@string/diss_style_0</item>
+        <item>@string/diss_style_1</item>
+        <item>@string/diss_style_2</item>
+        <item>@string/diss_style_3</item>
+    </string-array>
+
+    <string name="diss_style_0">默认</string>
+    <string name="diss_style_1">咳~忒</string>
+    <string name="diss_style_2">我打</string>
+    <string name="diss_style_3">鲲</string>
+
+    <string-array name="diss_style_values">
+        <item>10</item>
+        <item>20</item>
+        <item>30</item>
+        <item>40</item>
+    </string-array>
+
 
     <string-array name="auto_ward_condition">
         <item>@string/auto_ward_condition_0</item>
