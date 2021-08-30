@@ -22,7 +22,7 @@ public class WardHook extends SuperbHook {
 		Ward ward = new Ward(condition, cl);
 		switch (condition) {
 			case 0:
-				hookMethod("com.sup.android.detail.util.o", "a", int.class, long.class, boolean.class, int.class, int.class, ward);
+				hookMethod("com.sup.android.detail.util.m", "a", int.class, long.class, boolean.class, int.class, int.class, ward);
 				break;
 			case 1:
 				hookMethod("com.sup.android.module.publish.publish.PublishLooper$enqueue$1", "invoke", "com.sup.android.mi.publish.bean.PublishBean", ward);

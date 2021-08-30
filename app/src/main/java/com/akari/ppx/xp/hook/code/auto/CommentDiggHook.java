@@ -17,7 +17,7 @@ public class CommentDiggHook extends SuperbHook {
 		hookMethod("com.sup.android.mi.publish.bean.CommentBean", "setRealCommentId", long.class, new XC_MethodHook() {
 			@Override
 			protected void beforeHookedMethod(MethodHookParam param) {
-				callMethod(newInstance(findClass("com.sup.android.detail.util.o", cl)), "a", 8, param.args[0], true, 10, 1);
+				callMethod(newInstance(findClass("com.sup.android.detail.util.m", cl)), "a", 8, param.args[0], true, 10, 1);
 			}
 		});
 		hookMethod("com.sup.android.m_comment.docker.holder.c", "p", "com.sup.android.m_comment.docker.holder.c", new XC_MethodHook() {

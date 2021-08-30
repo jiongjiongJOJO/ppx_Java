@@ -26,7 +26,7 @@ public class SendGodHook extends SuperbHook {
 			protected void afterHookedMethod(MethodHookParam param) {
 				if (getLongField(param.thisObject, "aliasItemId") == 1 && !getBooleanField(param.thisObject, "hasLiked")) {
 					setLongField(param.thisObject, "aliasItemId", 2);
-					callMethod(newInstance(findClass("com.sup.android.detail.util.o", cl)), "a",
+					callMethod(newInstance(findClass("com.sup.android.detail.util.m", cl)), "a",
 							8, getLongField(param.thisObject, "commentId"), true, 10, 1);
 					if (autoSendGod && System.currentTimeMillis() / 1000 - getLongField(param.thisObject, "createTime") <= timeLimit)
 						callMethod(newInstance(findClass("com.sup.android.m_comment.util.helper.d", cl)), "a",

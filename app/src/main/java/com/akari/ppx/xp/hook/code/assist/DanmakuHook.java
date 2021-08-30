@@ -26,7 +26,7 @@ public class DanmakuHook extends SuperbHook {
 				setBooleanField(param.getResult(), "canSendAdvanceDanmaku", true);
 			}
 		});
-		hookMethod(QUERY_DANMAKU_SENDER, "com.sup.android.m_danmaku.widget.k", "b", "com.sup.android.m_danmaku.danmaku.model.d", float.class, float.class, new XC_MethodReplacement() {
+		hookMethod(QUERY_DANMAKU_SENDER, "com.sup.android.m_danmaku.widget.l", "b", "com.sup.android.m_danmaku.danmaku.model.d", float.class, float.class, new XC_MethodReplacement() {
 			@Override
 			protected Object replaceHookedMethod(MethodHookParam param) {
 				callMethod(newInstance(findClass("com.sup.android.module.usercenter.b.e", cl)), "a", getLongField(param.args[0], "V"), Proxy.newProxyInstance(cl, new Class[]{findClass("com.sup.android.mi.usercenter.AsyncCallback", cl)}, (proxy, method, args) -> callMethod(callStaticMethod(findClass("com.bytedance.router.SmartRouter", cl), "buildRoute", callMethod(getObjectField(param.thisObject, "b"), "getContext"), callMethod(callMethod(args[0], "getData"), "getProfileSchema")), "open")));

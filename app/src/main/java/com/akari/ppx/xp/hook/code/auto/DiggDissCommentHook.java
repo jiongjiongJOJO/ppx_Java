@@ -50,7 +50,7 @@ public class DiggDissCommentHook extends SuperbHook {
 					}
 					try {
 						if (autoDigg) {
-							callMethod(newInstance(findClass("com.sup.android.detail.util.o", cl)), "a",
+							callMethod(newInstance(findClass("com.sup.android.detail.util.m", cl)), "a",
 									callMethod(feedCell, "getCellType"), callMethod(feedCell, "getCellId"), true, diggStyle, 2);
 						}
 						if (autoDiss) {

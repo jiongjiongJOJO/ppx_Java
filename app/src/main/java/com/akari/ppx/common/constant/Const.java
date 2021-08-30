@@ -3,7 +3,7 @@ package com.akari.ppx.common.constant;
 import com.akari.ppx.BuildConfig;
 
 public interface Const {
-	String BEST_FIT_VERSION = "3.5.5";
+	String BEST_FIT_VERSION = "3.6.1";
 
 	String TEST = "测试";
 	String NOW = "当前：";
