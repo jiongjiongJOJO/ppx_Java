@@ -245,6 +245,15 @@
             android:key="@string/pref_set_video_play_speed"
             android:summary="@string/pref_set_video_play_speed_summary"
             android:title="@string/pref_set_video_play_speed_title" />
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/pref_show_user_id"
+            android:summary="@string/pref_show_user_id_summary"
+            android:title="@string/pref_show_user_id_title" />
+        <Preference
+            android:dependency="@string/pref_show_user_id"
+            android:key="@string/pref_jump_to_user"
+            android:title="@string/jump_to_user" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/pref_auto_title">

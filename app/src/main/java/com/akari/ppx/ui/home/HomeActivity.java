@@ -15,6 +15,8 @@ import com.akari.ppx.ui.BaseActivity;
 
 import org.jetbrains.annotations.NotNull;
 
+import static com.akari.ppx.common.utils.Utils.jump2user;
+
 public class HomeActivity extends BaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,9 @@ public class HomeActivity extends BaseActivity {
 				Intent intent = getPackageManager().getLaunchIntentForPackage("com.sup.android.superb");
 				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(intent);
+				break;
+			case R.id.jump_to_user:
+				jump2user(this);
 				break;
 			case R.id.exit:
 				finish();

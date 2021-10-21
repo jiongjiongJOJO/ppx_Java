@@ -1,7 +1,5 @@
 package com.akari.ppx.xp.hook.code.auto;
 
-import android.util.Log;
-
 import com.akari.ppx.common.utils.XSP;
 import com.akari.ppx.xp.hook.code.SuperbHook;
 
@@ -77,7 +75,6 @@ public class DiggDissCommentHook extends SuperbHook {
 											, "cell_detail", "input", false, 0, false, false, -1L));
 						}
 					} catch (Exception ignored) {
-						Log.e("111111", ignored.getMessage());
 					}
 				}
 			});

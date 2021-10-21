@@ -21,8 +21,8 @@ android {
         applicationId "com.akari.ppx"
         minSdkVersion 21
         targetSdkVersion 27
-        versionCode 184
-        versionName '1.8.4'
+        versionCode 185
+        versionName '1.8.5'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -45,7 +45,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "androidx.preference:preference:1.1.1"
-    implementation "androidx.constraintlayout:constraintlayout:2.1.0"
+    implementation "androidx.constraintlayout:constraintlayout:2.1.1"
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation "com.jaredrummler:cyanea:1.0.2"
     implementation 'com.google.code.gson:gson:2.8.6'

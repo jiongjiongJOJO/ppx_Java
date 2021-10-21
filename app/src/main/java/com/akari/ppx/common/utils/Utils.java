@@ -1,6 +1,8 @@
 package com.akari.ppx.common.utils;
 
 import android.annotation.SuppressLint;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -104,6 +106,17 @@ public class Utils {
 	private static void clearCalendar(Calendar c, int... fields) {
 		for (int f : fields)
 			c.set(f, 0);
+	}
+
+	public static void jump2user(Context context) {
+		ClipData clipData = ((ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE)).getPrimaryClip();
+		if (clipData != null && clipData.getItemCount() > 0) {
+			try {
+				context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("bds://user/profile?user_id=" + Long.parseLong((String) clipData.getItemAt(0).getText()) + "&page_index=1")));
+			} catch (Exception ignored) {
+				showToast(context, "跳转失败\n注意：使用的是剪切板内的ID");
+			}
+		}
 	}
 
 	public static void donateByAlipay(Context context) {

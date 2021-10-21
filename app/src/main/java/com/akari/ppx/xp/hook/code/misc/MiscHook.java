@@ -14,7 +14,7 @@ import java.lang.reflect.Proxy;
 import de.robv.android.xposed.XC_MethodHook;
 
 import static com.akari.ppx.common.constant.Const.AUTHOR_ID;
-import static com.akari.ppx.common.utils.Utils.joinQQGroup;
+import static com.akari.ppx.common.utils.Utils.donateByAlipay;
 import static com.akari.ppx.common.utils.Utils.showDialogXP;
 import static com.akari.ppx.common.utils.Utils.showError;
 import static de.robv.android.xposed.XposedHelpers.callMethod;
@@ -51,11 +51,11 @@ public class MiscHook extends SuperbHook {
 					}));
 					SharedPreferences sp = context.getSharedPreferences(BuildConfig.APPLICATION_ID, 0);
 					if (sp.getInt("version", 0) < BuildConfig.VERSION_CODE)
-						showDialogXP(cl, context, "皮皮虾助手 " + BuildConfig.VERSION_NAME, "激活成功，欢迎使用！\n聊天&反馈&提建议可加下方QQ群"
+						showDialogXP(cl, context, "皮皮虾助手 " + BuildConfig.VERSION_NAME, "激活成功，欢迎使用！如喜欢可捐赠\uD83E\uDDE1"
 								, "我才不要", v -> saveCurVersion(sp)
-								, "点我进群", v -> {
+								, "点我捐赠", v -> {
 									saveCurVersion(sp);
-									joinQQGroup(context);
+									donateByAlipay(context);
 								});
 					executed[0] = true;
 				}

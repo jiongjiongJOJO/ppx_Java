@@ -47,6 +47,8 @@
     <string name="pref_show_exact_comment_time_format">pref_show_exact_comment_time_format</string>
     <string name="pref_keep_video_play_speed">pref_keep_video_play_speed</string>
     <string name="pref_set_video_play_speed">pref_set_video_play_speed</string>
+    <string name="pref_show_user_id">pref_show_user_id</string>
+    <string name="pref_jump_to_user">pref_jump_to_user</string>
     <string name="pref_auto_browse_enable">pref_auto_browse_enable</string>
     <string name="pref_auto_browse_frequency">pref_auto_browse_frequency</string>
     <string name="pref_auto_browse_video_mode">pref_auto_browse_video_mode</string>
@@ -91,6 +93,7 @@
     <string name="other_channel">其他频道</string>
     <string name="reset">重置</string>
     <string name="start_app">启动皮皮虾</string>
+    <string name="jump_to_user">ID跳转用户主页</string>
     <string name="exit">退出</string>
 
     <string name="pref_purify_title">净化功能</string>
@@ -179,6 +182,8 @@
     <string name="pref_keep_video_play_speed_summary">再次长按取消加速</string>
     <string name="pref_set_video_play_speed_title">长按视频倍速</string>
     <string name="pref_set_video_play_speed_summary">%s</string>
+    <string name="pref_show_user_id_title">个人主页显示用户ID</string>
+    <string name="pref_show_user_id_summary">点击ID将复制到剪贴板</string>
 
     <string name="pref_auto_title">自动化功能（对详情页帖子生效）</string>
     <string name="pref_auto_browse_enable_title">自动切换下一条</string>

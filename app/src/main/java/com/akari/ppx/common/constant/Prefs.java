@@ -30,6 +30,8 @@ public enum Prefs {
 	DEFAULT_CHANNEL_NEW("pref_default_channel_new"),
 	REMOVE_RESTRICTIONS("pref_remove_restrictions"),
 	SHOW_REGISTER_ESCAPE_TIME("pref_show_register_escape_time"),
+	SHOW_USER_ID("pref_show_user_id"),
+	JUMP_TO_USER("pref_jump_to_user"),
 	SAVE_AUDIO("pref_save_audio"),
 	COPY_ITEM("pref_copy_item"),
 	UNLOCK_ILLEGAL_WORD("pref_unlock_illegal_word"),

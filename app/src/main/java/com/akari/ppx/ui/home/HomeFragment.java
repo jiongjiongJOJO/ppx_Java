@@ -60,6 +60,7 @@ public class HomeFragment extends PreferenceFragmentCompat implements Preference
 		findPreference(Prefs.REMOVE_BOTTOM_VIEW).setOnPreferenceChangeListener(this);
 		findPreference(Prefs.REMOVE_PUBLISH_BUTTON).setOnPreferenceChangeListener(this);
 		findPreference(Prefs.HIDE_LAUNCHER_ICON).setOnPreferenceChangeListener(this);
+		findPreference(Prefs.JUMP_TO_USER).setOnPreferenceClickListener(this);
 		findPreference(Prefs.DONATE).setOnPreferenceClickListener(this);
 		findPreference(Prefs.JOIN_QQ_GROUP).setOnPreferenceClickListener(this);
 		findPreference(Prefs.SOURCE_CODE).setOnPreferenceClickListener(this);
@@ -85,6 +86,9 @@ public class HomeFragment extends PreferenceFragmentCompat implements Preference
 	@Override
 	public boolean onPreferenceClick(Preference preference) {
 		switch (Prefs.fromString(preference.getKey())) {
+			case JUMP_TO_USER:
+				Utils.jump2user(context);
+				break;
 			case DONATE:
 				Utils.donateByAlipay(context);
 				break;

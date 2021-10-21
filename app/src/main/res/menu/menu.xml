@@ -5,6 +5,9 @@
         android:id="@+id/start_app"
         android:title="@string/start_app" />
     <item
+        android:id="@+id/jump_to_user"
+        android:title="@string/jump_to_user" />
+    <item
         android:id="@+id/exit"
         android:title="@string/exit" />
 </menu>

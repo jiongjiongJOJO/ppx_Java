@@ -25,7 +25,7 @@ public class ImageHook extends SuperbHook {
 				boolean useCdn = false;
 				String url = null;
 				if (thumbs == null || !isThumb(currentImage, thumbs.get((int) callMethod(callMethod(param.thisObject, "getVpGallery"), "getCurrentItem")))) {
-					url = "https://sf1-nhcdn-tos.pstatp.com/obj/" + callMethod(currentImage, "getUri");
+					url = "https://sf1-ttcdn-tos.pstatp.com/obj/" + callMethod(currentImage, "getUri");
 					FutureTask<String> task = new FutureTask<>(new WebTask(1, url, cl));
 					new Thread(task).start();
 					if (!"image/webp".equals(task.get()))
